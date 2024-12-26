@@ -141,6 +141,36 @@
         .brk-hosted-video::before {
             padding-top: 70%;
         }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 32%;
+            transform: translate(-50%, -50%);
+            color: white;
+            /* Ubah warna teks menjadi putih */
+            text-align: left;
+            font-family: Arial, sans-serif;
+            /* Sesuaikan font */
+        }
+
+        .text-overlay h1 {
+            font-size: 17px;
+            /* Sesuaikan ukuran */
+            font-weight: bold;
+            margin: 0;
+            color: white;
+            /* Pastikan warna teks tetap putih */
+        }
+
+        .text-overlay h2 {
+            font-size: 11px;
+            /* Sesuaikan ukuran */
+            font-weight: normal;
+            margin: 5px 0 0;
+            color: white;
+            /* Pastikan warna teks tetap putih */
+        }
     </style>
 
 </head>

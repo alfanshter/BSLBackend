@@ -1,4 +1,4 @@
-<section class="bg-cover position-relative pt-60 pb-50 lazyload" data-bg="img/demo_construction/1920x1080_1.jpg">
+<section class="bg-cover position-relative pt-60 pb-50 lazyload" data-bg="img/demo_construction/bgchart.png">
     <div class="brk-layer brk-bg-black position-absolute opacity-70"></div>
     <div class="container position-relative brk-z-index-10">
         <div class="row align-items-center">

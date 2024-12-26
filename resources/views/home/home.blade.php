@@ -349,10 +349,15 @@
                             data-frames='[{"delay":700,"speed":1000,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:50px;opacity:0;","ease":"Power3.easeInOut"}]'
                             data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                             data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                            style="z-index: 9">
-                            <img src="img/demo_construction/images/db3f9-brk_slide_element-2.png" alt=""
-                                data-ww="" data-hh="" data-no-retina />
+                            style="z-index: 9; position: relative;">
+                            <img src="img/demo_construction/images/blue1.png" alt="" data-ww=""
+                                data-hh="" data-no-retina />
+                            <span class="text-overlay">
+                                <h1> TOTAL <br> MAINTANENCE <br> SERVER</h1>
+                                <h2>PT TROUW NUTRITION <br> INDONESIA</h2>
+                            </span>
                         </div>
+
                         <div class="tp-caption" id="slide-52-layer-7" data-x="['right','right','right','right']"
                             data-hoffset="['5','5','5','5']" data-y="['top','top','top','top']"
                             data-voffset="['332','258','258','258']" data-width="none" data-height="none"
@@ -362,8 +367,12 @@
                             data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                             data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
                             style="z-index: 10">
-                            <img src="img/demo_construction/images/e6d1b-brk_slide_element-3.png" alt=""
-                                data-ww="" data-hh="" data-no-retina />
+                            <img src="img/demo_construction/images/blue2.png" alt="" data-ww=""
+                                data-hh="" data-no-retina />
+                            <span class="text-overlay">
+                                <h1> MODIFICATION <br> DUST <br> COLLECTOT </h1>
+                                <h2>PT GREENFIELDS <br> INDONESIA</h2>
+                            </span>
                         </div>
                         <div class="tp-caption" id="slide-52-layer-8" data-x="['right','right','right','right']"
                             data-hoffset="['5','5','5','5']" data-y="['top','top','top','top']"
@@ -374,8 +383,12 @@
                             data-textalign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                             data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
                             style="z-index: 11">
-                            <img src="img/demo_construction/images/eda70-brk_slide_element-4.png" alt=""
-                                data-ww="" data-hh="" data-no-retina />
+                            <img src="img/demo_construction/images/blue3.png" alt="" data-ww=""
+                                data-hh="" data-no-retina />
+                            <span class="text-overlay">
+                                <h1> REWINDING <br> PUMPLEFOOD <br> PANEL </h1>
+                                <h2> PAKUWON CITY <br> </h2>
+                            </span>
                         </div>
                         <div class="tp-caption rev-btn" id="slide-52-layer-9" data-x="['left','left','left','center']"
                             data-hoffset="['85','85','64','0']" data-y="['top','top','top','middle']"
@@ -745,10 +758,10 @@
                   letter-spacing: 0px;
                   font-family: Montserrat;
                 ">
-                            BUJ Architects and Ash Sakula Architects have won planning
-                            permission for a huge mixed-use development near the Olympic
-                            Park that falls under the remit of the London Legacy Development
-                            Corporation.
+                            At PT. BIMA SAKTI LUHUR, we turn visionary concepts into reality by combining innovative design
+                            with precise execution. From planning to completion, our team ensures that every project meets
+                            rigorous safety and quality standards, delivering reliable and sustainable
+                            infrastructure solutions.
                         </div>
                     </li>
                 </ul>

@@ -421,9 +421,9 @@
                     <div class="col-lg-4">
                         <div
                             class="icon__wrapper active__effect z-index-3 active current pt-50 pt-md-100 pb-50 pl-30 pr-30">
-                            <span class="bg-before bg__style lazyload" data-bg="img/400x800_1.jpg"></span>
+                            <span class="bg-before bg__style lazyload" data-bg="img/plant.jpg"></span>
                             <span class="grad-overlay"></span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+                            <svg xmlns="plant.svg" viewBox="0 0 60 60">
                                 <g>
                                     <defs>
                                         <clipPath id="livicon_magic_fl">
@@ -476,8 +476,8 @@
                                         d="M42,48c0,0-0.4-1.2-1.6-2.4C39.2,44.4,38,44,38,44s1.2-0.4,2.4-1.6C41.6,41.2,42,40,42,40s0.4,1.2,1.6,2.4C44.8,43.6,46,44,46,44s-1.2,0.4-2.4,1.6C42.4,46.8,42,48,42,48z" />
                                 </g>
                             </svg>
-                            <h4 class="font__family-montserrat font__size-28 font__weight-bold">
-                                Design
+                            <h4 class="font__family-montserrat font__size-20 font__weight-bold">
+                                PLANT REENGENERING & MODIFICATION
                             </h4>
                             <p class="font__family-open-sans font__size-14 line__height-21">We develop innovative designs
                                 tailored to your project needs, ensuring beauty, functionality, and efficiency at every
@@ -494,7 +494,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="icon__wrapper active__effect z-index-2 pt-50 pt-md-100 pb-50 pl-30 pr-30">
-                            <span class="bg-before bg__style lazyload" data-bg="img/400x800_1.jpg"></span>
+                            <span class="bg-before bg__style lazyload" data-bg="img/maintenance.jpg"></span>
                             <span class="grad-overlay"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
                                 <path fill="none" stroke="#9CAAB9" stroke-width="2" stroke-linecap="square"
@@ -504,8 +504,8 @@
                                     stroke-miterlimit="10"
                                     d="M23,7h1.04l1.01,4.31l2.02,0.54l3.03-3.23l1.81,1.04l-1.28,4.23l1.48,1.48l4.23-1.28l1.05,1.81l-3.22,3.03l0.54,2.02L39,21.96l0,2.08l-4.31,1.01l-0.54,2.02l3.22,3.03l-1.04,1.81l-4.23-1.28l-1.48,1.48l1.28,4.23l-1.81,1.05l-3.03-3.23l-2.02,0.54L24.04,39l-2.09,0l-1.01-4.31l-2.02-0.54l-3.02,3.23l-1.81-1.04l1.28-4.23l-1.48-1.48L9.66,31.9L8.62,30.1l3.23-3.03l-0.54-2.02L7,24.04l0-2.09l4.31-1.01l0.54-2.02L8.62,15.9l1.04-1.81l4.24,1.28l1.48-1.48L14.1,9.66l1.81-1.04l3.03,3.23l2.02-0.54L21.96,7H23zM23,17c-3.31,0-6,2.68-6,6c0,3.31,2.68,6,6,6c3.31,0,6-2.69,6-6C29,19.68,26.31,17,23,17z" />
                             </svg>
-                            <h4 class="font__family-montserrat font__size-28 font__weight-bold">
-                                Development
+                            <h4 class="font__family-montserrat font__size-20 font__weight-bold">
+                                MAINTENANCE, REPAIR & OVERHOUL
                             </h4>
                             <p class="font__family-open-sans font__size-14 line__height-21">Our team brings projects to
                                 life with the highest quality, combining modern technology and expertise to deliver results
@@ -522,7 +522,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="icon__wrapper active__effect pt-50 pt-md-100 pb-50 pl-30 pr-30">
-                            <span class="bg-before bg__style lazyload" data-bg="img/400x800_1.jpg"></span>
+                            <span class="bg-before bg__style lazyload" data-bg="img/machine.jpg"></span>
                             <span class="grad-overlay"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
                                 <g>
@@ -568,10 +568,10 @@
                                         y2="19" />
                                 </g>
                             </svg>
-                            <h4 class="font__family-montserrat font__size-28 font__weight-bold">
-                                Research
+                            <h4 class="font__family-montserrat font__size-20 font__weight-bold">
+                                MACHINE MAKER
                             </h4>
-                            <p class="font__family-open-sans font__size-14 line__height-21">We conduct in-depth research to
+                            <p class="font__family-open-sans font__size-14 line__height-21">We conduct in-depth research <br> to
                                 create the best solutions, ensuring every project is based on data and the latest trends for
                                 sustainable success.
                             </p>
