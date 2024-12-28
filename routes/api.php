@@ -31,7 +31,6 @@ Route::get('/attendence', [AttendenceController::class, 'attendenceApi']);
 Route::post('/checkin', [AttendenceController::class, 'checkin']);
 Route::post('/checkout', [AttendenceController::class, 'checkout']);
 
-
 Route::get('/notifikasi', [NotifikasiController::class, 'index']);
 Route::post('/notifikasi', [NotifikasiController::class, 'store']);
 

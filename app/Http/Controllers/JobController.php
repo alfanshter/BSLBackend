@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JobSafetyAnalysis;
-use App\Models\AarJobSafety;
 use App\Models\Sib;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Illuminate\Database\QueryException;
+use App\Models\Jsarev;
 use Illuminate\Support\Str;
+use App\Models\AarJobSafety;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\JobSafetyAnalysis;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
-use DataTables;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class JobController extends Controller
 {
@@ -25,6 +28,133 @@ class JobController extends Controller
         }
         return redirect("login")->withSuccess('You are not allowed to access');
     }
+    public function rev()
+    {
+        if (Auth::check()) {
+            $data = Jsarev::all(); // Akan tetap mengirimkan koleksi, meskipun kosong
+            return view('job.rev', compact('data'));
+        }
+        return redirect("login")->withSuccess('You are not allowed to access');
+    }
+
+
+    public function jsapost(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'file' => 'required|mimes:pdf,doc,docx,xls,xlsx|max:2048', // Maksimal 2MB
+        ], [
+            'file.required' => 'File wajib diunggah.',
+            'file.mimes' => 'File harus dalam format PDF, Word (doc/docx), atau Excel (xls/xlsx).',
+            'file.max' => 'Ukuran file maksimal adalah 2MB.',
+        ]);
+
+        // Simpan file
+        $filename = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
+
+        // Ambil ekstensi file
+        $extension = $request->file('file')->getClientOriginalExtension();
+
+        // Format waktu sekarang
+        $waktusekarang = now()->format('dmY-H_i'); // Ganti ":" dengan "_"
+
+        // Gabungkan nama file, waktu, dan ekstensi
+        $customFileName = $filename . '(' . $waktusekarang . ').' . $extension;
+
+        // Simpan file dengan nama yang dihasilkan
+        $filePath = $request->file('file')->storeAs('public/docs', $customFileName);
+
+        // Simpan data ke database
+        Jsarev::create([
+            'file' => $customFileName, // Simpan nama file lengkap dengan ekstensi
+            'user_id' => auth()->id(),
+        ]);
+
+        return back()->withSuccess('Upload file berhasl');
+    }
+
+
+    public function delete($id)
+    {
+        $data = Jsarev::find($id);
+
+        if (!$data) {
+            return back()->withError('File tidak ditemukan.');
+        }
+
+        // Path file di storage dan public
+        $filePaths = [
+            storage_path('/app/public/docs/' . $data->file), // Path di storage
+            public_path('storage/docs/' . $data->file)     // Path di public
+        ];
+
+        // Hapus file jika ada
+        $deleted = false;
+        foreach ($filePaths as $path) {
+            if (file_exists($path)) {
+                unlink($path); // Hapus file
+                $deleted = true;
+            }
+        }
+
+        if ($deleted) {
+            // Hapus data dari database
+            $data->delete();
+            return back()->withSuccess('File berhasil dihapus.');
+        } else {
+            return back()->withError('File tidak ditemukan.');
+        }
+    }
+
+    public function edit(Request $request, $id)
+    {
+        // Validasi input jika file di-upload
+        $request->validate([
+            'file' => 'nullable|mimes:pdf,doc,docx,xls,xlsx|max:2048', // Maksimal 2MB
+        ], [
+            'file.required' => 'File wajib diunggah.',
+            'file.mimes' => 'File harus dalam format PDF, Word (doc/docx), atau Excel (xls/xlsx).',
+            'file.max' => 'Ukuran file maksimal adalah 2MB.',
+        ]);
+
+        // Temukan data berdasarkan ID
+        $data = Jsarev::find($id);
+
+        // Jika data tidak ditemukan
+        if (!$data) {
+            return back()->withError('Data dengan ID ' . $id . ' tidak ditemukan.');
+        }
+
+        // Jika tidak ada file yang di-upload, gunakan kondisi untuk menangani
+        if ($request->hasFile('file')) {
+            // Hapus file lama jika ada
+            $oldFilePaths = [
+                storage_path('app/public/docs/' . $data->file), // Path di storage
+                public_path('storage/docs/' . $data->file)     // Path di public
+            ];
+
+            foreach ($oldFilePaths as $path) {
+                if (file_exists($path)) {
+                    unlink($path); // Hapus file lama
+                }
+            }
+
+            // Simpan file baru
+            $filename = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $waktusekarang = now()->format('dmY-H_i'); // Ganti ":" dengan "_"
+            $newFileName = $filename . '(' . $waktusekarang . ').' . $extension;
+
+            // Menyimpan file ke storage
+            $request->file('file')->storeAs('public/docs', $newFileName);
+
+            // Perbarui data di database dengan file baru
+            $data->file = $newFileName;
+            $data->save();
+        }
+
+        return redirect('/job-safety-analysis-rev')->withSuccess('File berhasil diperbarui.');
+    }
 
     public function create(Request $request)
     {
@@ -32,7 +162,7 @@ class JobController extends Controller
             $val = Cookie::get('kode_aar');
             $data = AarJobSafety::where('kode', $val)->get();
             if ($request->ajax()) {
-                return Datatables::of($data)
+                return DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', 'usergroup.action')
                     ->rawColumns(['action'])
@@ -78,7 +208,7 @@ class JobController extends Controller
             ]);
             $dataaar = DB::table('aar_job_safeties')->select('id')->where('kode', $request->kode)->get();
             $json = json_decode($dataaar, true);
-            $output = implode(',', collect($json)->map(fn ($item) => $item['id'])->all());
+            $output = implode(',', collect($json)->map(fn($item) => $item['id'])->all());
             JobSafetyAnalysis::create([
                 'ref_id' => $request->ref_id,
                 'job_title' => $request->job_title,
@@ -100,27 +230,13 @@ class JobController extends Controller
         return redirect("login")->withSuccess('You are not allowed to access');
     }
 
-    public function edit($id)
-    {
-        if (Auth::check()) {
-            $job = JobSafetyAnalysis::where('id', $id)->first();
-            $id_aar = explode(',', $job->id_aar);
-            $aar = AarJobSafety::where('kode', $job->kode)->get();
-            return view('job.edit', [
-                'job' => $job,
-                'ppe' => explode(',', $job->ppe),
-                'aar' => $aar
-            ]);
-        }
-        return redirect("login")->withSuccess('You are not allowed to access');
-    }
 
     public function update(Request $request)
     {
         if (Auth::check()) {
             $dataaar = DB::table('aar_job_safeties')->select('id')->where('kode', $request->kode)->get();
             $json = json_decode($dataaar, true);
-            $output = implode(',', collect($json)->map(fn ($item) => $item['id'])->all());
+            $output = implode(',', collect($json)->map(fn($item) => $item['id'])->all());
             $user = JobSafetyAnalysis::where('id', $request->id)->update([
                 'ref_id' => $request->ref_id,
                 'job_title' => $request->job_title,

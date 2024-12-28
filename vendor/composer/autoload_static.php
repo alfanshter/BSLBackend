@@ -675,6 +675,7 @@ class ComposerStaticInit7528c5393972da132362d7a45e623f9a
         'App\\Models\\HotWorkPermit' => __DIR__ . '/../..' . '/app/Models/HotWorkPermit.php',
         'App\\Models\\InternalPurchaseRequesition' => __DIR__ . '/../..' . '/app/Models/InternalPurchaseRequesition.php',
         'App\\Models\\JobSafetyAnalysis' => __DIR__ . '/../..' . '/app/Models/JobSafetyAnalysis.php',
+        'App\\Models\\Jsarev' => __DIR__ . '/../..' . '/app/Models/Jsarev.php',
         'App\\Models\\Notifikasi' => __DIR__ . '/../..' . '/app/Models/Notifikasi.php',
         'App\\Models\\OvertimeWork' => __DIR__ . '/../..' . '/app/Models/OvertimeWork.php',
         'App\\Models\\PpeJobSafety' => __DIR__ . '/../..' . '/app/Models/PpeJobSafety.php',

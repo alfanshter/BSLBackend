@@ -46,6 +46,7 @@ return array(
     'App\\Models\\HotWorkPermit' => $baseDir . '/app/Models/HotWorkPermit.php',
     'App\\Models\\InternalPurchaseRequesition' => $baseDir . '/app/Models/InternalPurchaseRequesition.php',
     'App\\Models\\JobSafetyAnalysis' => $baseDir . '/app/Models/JobSafetyAnalysis.php',
+    'App\\Models\\Jsarev' => $baseDir . '/app/Models/Jsarev.php',
     'App\\Models\\Notifikasi' => $baseDir . '/app/Models/Notifikasi.php',
     'App\\Models\\OvertimeWork' => $baseDir . '/app/Models/OvertimeWork.php',
     'App\\Models\\PpeJobSafety' => $baseDir . '/app/Models/PpeJobSafety.php',

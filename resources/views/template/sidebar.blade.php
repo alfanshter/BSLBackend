@@ -29,6 +29,7 @@
       </a>
       <div class="collapse" id="form-page">
         <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="/job-safety-analysis-rev">Job Safety Analysis-rev</a></li>
           <li class="nav-item"> <a class="nav-link" href="/job-safety-analysis">Job Safety Analysis</a></li>
           <li class="nav-item"> <a class="nav-link" href="/internal-purchase-requestion">Internal Purchase <br>Requestion</a></li>
           <li class="nav-item"> <a class="nav-link" href="/hot-work-premit">Hot Work Premit</a></li>
@@ -67,6 +68,6 @@
     </li>
     @endif
 
-    
+
   </ul>
 </nav>
