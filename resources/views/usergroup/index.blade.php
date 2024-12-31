@@ -124,6 +124,8 @@
       data: { id: id },
       dataType: 'json',
       success: function(res){
+        console.log(res);
+
         $('#exampleModalLabel').html("Edit Group Name");
         $('#modalGroup').modal('show');
         $('#id').val(res.id);

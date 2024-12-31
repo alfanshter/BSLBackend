@@ -74,7 +74,7 @@ class JobController extends Controller
     }
 
 
-    public function delete($id)
+    public function deleteRev($id)
     {
         $data = Jsarev::find($id);
 
@@ -106,7 +106,7 @@ class JobController extends Controller
         }
     }
 
-    public function edit(Request $request, $id)
+    public function editRev(Request $request, $id)
     {
         // Validasi input jika file di-upload
         $request->validate([
@@ -255,6 +255,20 @@ class JobController extends Controller
         }
         return redirect("login")->withSuccess('You are not allowed to access');
     }
+
+    public function downloadJSa($id)
+    {
+        $filePath = storage_path("app/public/docs/");
+
+        // Cek apakah file ada
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'File tidak ditemukan.');
+        }
+    }
+
+    //yang lama
 
     public function updateAar(Request $request)
     {

@@ -15,7 +15,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DailyActivityController;
 use App\Http\Controllers\FrontSuratIjinController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobRevisiController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\RevisiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,10 +58,12 @@ Route::get('/edit/user/{id}', [UserController::class, 'edit']);
 Route::post('/update/user', [UserController::class, 'update']);
 Route::delete('/delete/user/{id}', [UserController::class, 'destroy']);
 
-Route::get('/job-safety-analysis-rev', [JobController::class, 'rev']);
-Route::post('/job-safety-analysis-post', [JobController::class, 'jsapost']);
-Route::delete('/delete-file/{id}', [JobController::class, 'delete'])->name('delete');
-Route::post('/eidt-file/{id}', [JobController::class, 'edit'])->name('edit');
+Route::get('/job-safety-analysis-rev', [JobRevisiController::class, 'index']);
+Route::post('/jsa-post', [JobRevisiController::class, 'store']);
+Route::delete('/delete-jsa/{id}', [JobRevisiController::class, 'delete']);
+Route::post('/edit-jsa', [JobRevisiController::class, 'edit']);
+Route::get('/download-jsa', [JobRevisiController::class, 'downloadJsa']);
+
 Route::get('/job-safety-analysis', [JobController::class, 'index']);
 Route::get('/job-safety-analysis/create', [JobController::class, 'create'])->name('create-job');
 Route::post('/job-safety-analysis', [JobController::class, 'store']);
@@ -67,7 +71,6 @@ Route::get('/edit/job-safety-analysis/{id}', [JobController::class, 'edit']);;
 Route::post('/update/job-safety-analysis', [JobController::class, 'update']);
 Route::delete('/delete/job-safety-analysis/{id}', [JobController::class, 'destroy']);
 Route::get('/job-safety-analysis/export/{id}', [JobController::class, 'export']);
-
 Route::post('/add-aar', [JobController::class, 'storeAar']);
 Route::post('/editadd-aar', [JobController::class, 'editAddAar']);
 Route::post('/edit-aar', [JobController::class, 'updateAar']);
