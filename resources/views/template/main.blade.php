@@ -47,6 +47,10 @@
 </head>
 
 <body>
+    <div id="render-loader" class="loader-container" style="display: none;">
+        <div class="render"></div>
+    </div>
+
   <div class="container-scroller">
 
     <!-- topbar -->

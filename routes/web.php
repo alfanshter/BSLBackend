@@ -18,6 +18,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobRevisiController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\RevisiController;
+use App\Http\Controllers\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,25 @@ Route::get('/history', [HomeController::class, 'history']);
 Route::get('/team', [HomeController::class, 'team']);
 Route::get('/partners', [HomeController::class, 'partners']);
 Route::get('/testimonials', [HomeController::class, 'testimonials']);
+
 Route::get('/services', [HomeController::class, 'services']);
+
+Route::get('/services-plant-reengenering-&-modification',[ServicesController::class,'services1']);
+Route::get('/services-maintenance-repair-&-overhoul',[ServicesController::class,'services2']);
+Route::get('/services-plant-operation-&-maintenance',[ServicesController::class,'services3']);
+Route::get('/services-plant-demolition-relocation-&-reactivation',[ServicesController::class,'services4']);
+Route::get('/services-plant-equipment-fabrication-&-installation',[ServicesController::class,'services5']);
+Route::get('/services-machine-maker',[ServicesController::class,'services6']);
+Route::get('/services-warehouse-&-transportation-services',[ServicesController::class,'services7']);
+Route::get('/services-warehous-solution',[ServicesController::class,'services8']);
+Route::get('/services-industrial-manipulator',[ServicesController::class,'services9']);
+Route::get('/services-industrial-steam-generator',[ServicesController::class,'services10']);
+Route::get('/services-portable-cleaning-machine',[ServicesController::class,'services11']);
+Route::get('/services-scruber-dryers-machine',[ServicesController::class,'services12']);
+Route::get('/services-packaging',[ServicesController::class,'services13']);
+Route::get('/services-welding',[ServicesController::class,'services14']);
+Route::get('/services-industrial-door',[ServicesController::class,'services15']);
+
 Route::get('/news', [HomeController::class, 'news']);
 Route::get('/contact', [HomeController::class, 'contact']);
 
@@ -58,13 +77,13 @@ Route::get('/edit/user/{id}', [UserController::class, 'edit']);
 Route::post('/update/user', [UserController::class, 'update']);
 Route::delete('/delete/user/{id}', [UserController::class, 'destroy']);
 
-Route::get('/job-safety-analysis-rev', [JobRevisiController::class, 'index']);
+Route::get('/job-safety-analysis', [JobRevisiController::class, 'index']);
 Route::post('/jsa-post', [JobRevisiController::class, 'store']);
 Route::delete('/delete-jsa/{id}', [JobRevisiController::class, 'delete']);
 Route::post('/edit-jsa', [JobRevisiController::class, 'edit']);
 Route::get('/download-jsa', [JobRevisiController::class, 'downloadJsa']);
 
-Route::get('/job-safety-analysis', [JobController::class, 'index']);
+// Route::get('/job-safety-analysis', [JobController::class, 'index']);
 Route::get('/job-safety-analysis/create', [JobController::class, 'create'])->name('create-job');
 Route::post('/job-safety-analysis', [JobController::class, 'store']);
 Route::get('/edit/job-safety-analysis/{id}', [JobController::class, 'edit']);;

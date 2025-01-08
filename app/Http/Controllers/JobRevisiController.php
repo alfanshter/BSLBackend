@@ -65,7 +65,7 @@ class JobRevisiController extends Controller
     {
         // Validasi input
         $validatedData = $request->validate([
-            'file' => 'required|file|mimes:docx,xls,xlsx,pdf,doc|max:2048', // File wajib diisi
+            'file' => 'required|file|mimes:docx,xls,xlsx,pdf,doc|max:51200', // File wajib diisi
         ]);
 
         if (Auth::check()) {
@@ -98,6 +98,7 @@ class JobRevisiController extends Controller
             return response()->json([
                 'message' => 'File uploaded successfully.',
                 'data' => $jsarev,
+                'status' => 1,
                 'file_url' => asset('storage/docs/' . $newFileName), // URL file
             ]);
         }

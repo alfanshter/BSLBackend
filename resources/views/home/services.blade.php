@@ -29,17 +29,162 @@
             <div class="col-md-6 col-xl-3">
                 <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/390x570_1.jpg" alt="alt" class="lazyload">
+                        data-src="img/demo_construction/services/card/card1.jpg" alt="alt" class="lazyload">
                     <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
                     <figcaption>
                         <div class="icon">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h4
-                            class="font__family-montserrat font__weight-bold font__size-24 text-uppercase main-title text-center">
-                            Civil, Backfill, Dredging and Heavy Equipment </h4>
-                        <p class="main-description font__family-open-sans font__size-14 text-gray text-center">Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor consequat </p>
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Plant Reengenering & Modification </h4>
+                        <a href="/services-plant-reengenering-&-modification" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
+                            data-brk-library="component__button">
+                            <span class="before">read more</span><span class="text">Click Me</span><span
+                                class="after">read more</span>
+                        </a>
+                    </figcaption>
+                    <span class="after"></span>
+                </figure>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="img/demo_construction/services/card/card2.jpg" alt="alt" class="lazyload">
+                    <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
+                    <figcaption>
+                        <div class="icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Maintenance, Repair & Overhoul </h4>
+                        <a href="/services-maintenance-repair-&-overhoul" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
+                            data-brk-library="component__button">
+                            <span class="before">read more</span><span class="text">Click Me</span><span
+                                class="after">read more</span>
+                        </a>
+                    </figcaption>
+                    <span class="after"></span>
+                </figure>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="img/demo_construction/services/card/card3.jpg" alt="alt" class="lazyload">
+                    <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
+                    <figcaption>
+                        <div class="icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Plant Operation & Maintenance </h4>
+                        <a href="/services-plant-operation-&-maintenance" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
+                            data-brk-library="component__button">
+                            <span class="before">read more</span><span class="text">Click Me</span><span
+                                class="after">read more</span>
+                        </a>
+                    </figcaption>
+                    <span class="after"></span>
+                </figure>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="img/demo_construction/services/card/card4.jpg" alt="alt" class="lazyload">
+                    <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
+                    <figcaption>
+                        <div class="icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Plant Demolition, Relocation & Reactivation </h4>
+                        <a href="/services-plant-demolition-relocation-&-reactivation" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
+                            data-brk-library="component__button">
+                            <span class="before">read more</span><span class="text">Click Me</span><span
+                                class="after">read more</span>
+                        </a>
+                    </figcaption>
+                    <span class="after"></span>
+                </figure>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="img/demo_construction/services/card/card5.jpg" alt="alt" class="lazyload">
+                    <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
+                    <figcaption>
+                        <div class="icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Plant Equipment Fabrication & Installation </h4>
+                        <a href="/services-plant-equipment-fabrication-&-installation" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
+                            data-brk-library="component__button">
+                            <span class="before">read more</span><span class="text">Click Me</span><span
+                                class="after">read more</span>
+                        </a>
+                    </figcaption>
+                    <span class="after"></span>
+                </figure>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="img/demo_construction/services/card/card6.jpg" alt="alt" class="lazyload">
+                    <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
+                    <figcaption>
+                        <div class="icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Machine Maker </h4>
+                        <a href="/services-machine-maker" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
+                            data-brk-library="component__button">
+                            <span class="before">read more</span><span class="text">Click Me</span><span
+                                class="after">read more</span>
+                        </a>
+                    </figcaption>
+                    <span class="after"></span>
+                </figure>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="img/demo_construction/services/card/card7.jpg" alt="alt" class="lazyload">
+                    <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
+                    <figcaption>
+                        <div class="icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Warehouse & Transportation Services </h4>
+                        <a href="/services-warehouse-&-transportation-services" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
+                            data-brk-library="component__button">
+                            <span class="before">read more</span><span class="text">Click Me</span><span
+                                class="after">read more</span>
+                        </a>
+                    </figcaption>
+                    <span class="after"></span>
+                </figure>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        data-src="img/demo_construction/services/card/card8.jpg" alt="alt" class="lazyload">
+                    <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
+                    <figcaption>
+                        <div class="icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Warehouse Solution </h4>
                         <a href="#" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
                             data-brk-library="component__button">
                             <span class="before">read more</span><span class="text">Click Me</span><span
@@ -52,17 +197,15 @@
             <div class="col-md-6 col-xl-3">
                 <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/390x570_2.jpg" alt="alt" class="lazyload">
+                        data-src="img/demo_construction/services/card/card9.jpg" alt="alt" class="lazyload">
                     <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
                     <figcaption>
                         <div class="icon">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h4
-                            class="font__family-montserrat font__weight-bold font__size-24 text-uppercase main-title text-center">
-                            Engineering and Design </h4>
-                        <p class="main-description font__family-open-sans font__size-14 text-gray text-center">Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor consequat </p>
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Industrial Manipulator </h4>
                         <a href="#" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
                             data-brk-library="component__button">
                             <span class="before">read more</span><span class="text">Click Me</span><span
@@ -75,17 +218,15 @@
             <div class="col-md-6 col-xl-3">
                 <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/390x570_3.jpg" alt="alt" class="lazyload">
+                        data-src="img/demo_construction/services/card/card10.jpg" alt="alt" class="lazyload">
                     <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
                     <figcaption>
                         <div class="icon">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h4
-                            class="font__family-montserrat font__weight-bold font__size-24 text-uppercase main-title text-center">
-                            Industrial Plant and Equipment </h4>
-                        <p class="main-description font__family-open-sans font__size-14 text-gray text-center">Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor consequat </p>
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Industrial Steam Generator </h4>
                         <a href="#" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
                             data-brk-library="component__button">
                             <span class="before">read more</span><span class="text">Click Me</span><span
@@ -98,17 +239,15 @@
             <div class="col-md-6 col-xl-3">
                 <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/470x620_1.png" alt="alt" class="lazyload">
+                        data-src="img/demo_construction/services/card/card11.jpg" alt="alt" class="lazyload">
                     <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
                     <figcaption>
                         <div class="icon">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h4
-                            class="font__family-montserrat font__weight-bold font__size-24 text-uppercase main-title text-center">
-                            Chemical Plant and Equipment </h4>
-                        <p class="main-description font__family-open-sans font__size-14 text-gray text-center">Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor consequat </p>
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Portable Cleaning Machine </h4>
                         <a href="#" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
                             data-brk-library="component__button">
                             <span class="before">read more</span><span class="text">Click Me</span><span
@@ -121,17 +260,15 @@
             <div class="col-md-6 col-xl-3">
                 <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/390x570_3.jpg" alt="alt" class="lazyload">
+                        data-src="img/demo_construction/services/card/card12.jpg" alt="alt" class="lazyload">
                     <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
                     <figcaption>
                         <div class="icon">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h4
-                            class="font__family-montserrat font__weight-bold font__size-24 text-uppercase main-title text-center">
-                            Water Treatment and Waste Water Treatment </h4>
-                        <p class="main-description font__family-open-sans font__size-14 text-gray text-center">Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor consequat </p>
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Scruber Dryers Machine </h4>
                         <a href="#" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
                             data-brk-library="component__button">
                             <span class="before">read more</span><span class="text">Click Me</span><span
@@ -144,17 +281,15 @@
             <div class="col-md-6 col-xl-3">
                 <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/470x620_1.jpg" alt="alt" class="lazyload">
+                        data-src="img/demo_construction/services/card/card13.jpg" alt="alt" class="lazyload">
                     <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
                     <figcaption>
                         <div class="icon">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h4
-                            class="font__family-montserrat font__weight-bold font__size-24 text-uppercase main-title text-center">
-                            Polution Control </h4>
-                        <p class="main-description font__family-open-sans font__size-14 text-gray text-center">Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor consequat </p>
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Packaging </h4>
                         <a href="#" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
                             data-brk-library="component__button">
                             <span class="before">read more</span><span class="text">Click Me</span><span
@@ -167,17 +302,15 @@
             <div class="col-md-6 col-xl-3">
                 <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/390x570_1.jpg" alt="alt" class="lazyload">
+                        data-src="img/demo_construction/services/card/card14.jpg" alt="alt" class="lazyload">
                     <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
                     <figcaption>
                         <div class="icon">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h4
-                            class="font__family-montserrat font__weight-bold font__size-24 text-uppercase main-title text-center">
-                            General Trading and Suplier </h4>
-                        <p class="main-description font__family-open-sans font__size-14 text-gray text-center">Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor consequat </p>
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Welding </h4>
                         <a href="#" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
                             data-brk-library="component__button">
                             <span class="before">read more</span><span class="text">Click Me</span><span
@@ -190,17 +323,15 @@
             <div class="col-md-6 col-xl-3">
                 <figure class="shape-box shape-box_inline" data-brk-library="component__shape_box">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/390x570_2.jpg" alt="alt" class="lazyload">
+                        data-src="img/demo_construction/services/card/card15.jpg" alt="alt" class="lazyload">
                     <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
                     <figcaption>
                         <div class="icon">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h4
-                            class="font__family-montserrat font__weight-bold font__size-24 text-uppercase main-title text-center">
-                            Maintenance Services </h4>
-                        <p class="main-description font__family-open-sans font__size-14 text-gray text-center">Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor consequat </p>
+                            class="font__family-montserrat font__weight-bold font__size-18 text-uppercase main-title text-center">
+                            Industrial Door </h4>
                         <a href="#" class="btn btn-inside-out btn-lg border-radius-30 font__weight-bold"
                             data-brk-library="component__button">
                             <span class="before">read more</span><span class="text">Click Me</span><span

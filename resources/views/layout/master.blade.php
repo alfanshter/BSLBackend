@@ -7,19 +7,22 @@
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" href="favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.ico') }}" />
     <meta name="theme-color" content="#2775FF" />
     <meta name="keywords" content="themeforest, theme, html, template" />
     <meta name="description" content="themeforest, theme, html, template" />
-    <link rel="stylesheet" id="brk-direction-bootstrap" href="css/assets/bootstrap.css" />
+    <link rel="stylesheet" id="brk-direction-bootstrap" href="{{ asset('css/assets/bootstrap.css') }}" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
-    <link rel="stylesheet" id="brk-skin-color" href="css/skins/brk-yellow.css" />
-    <link id="brk-base-color" rel="stylesheet" href="css/skins/brk-base-color.css" />
-    <link rel="stylesheet" id="brk-direction-offsets" href="css/assets/offsets.css" />
-    <link id="brk-css-min" rel="stylesheet" href="css/assets/styles.min.css" />
-    <link rel="stylesheet" href="vendor/revslider/css/settings.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" id="brk-skin-color" href="{{ asset('css/skins/brk-yellow.css') }}" />
+    <link id="brk-base-color" rel="stylesheet" href="{{ asset('css/skins/brk-base-color.css') }}" />
+    <link rel="stylesheet" id="brk-direction-offsets" href="{{ asset('css/assets/offsets.css') }}" />
+    <link id="brk-css-min" rel="stylesheet" href="{{ asset('css/assets/styles.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor/revslider/css/settings.css') }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}">
     <style>
         .hebe.tp-bullets:before {
             content: " ";
@@ -132,44 +135,72 @@
             transform: scale(1) translateX(-50%) translateY(0%);
             -webkit-transform: scale(1) translateX(-50%) translateY(0%);
         }
-    </style>
-    <style>
-        .brk-hosted-video {
-            margin-top: -60px;
+
+        td {
+            font-family: 'Montserrat';
+            font-weight: 600;
         }
 
-        .brk-hosted-video::before {
-            padding-top: 70%;
+        .table-responsive {
+            overflow-x: auto;
+            /* Memungkinkan scroll horizontal */
+            overflow-y: visible;
+            /* Memastikan overflow vertikal tidak diatur */
         }
 
-        .text-overlay {
-            position: absolute;
-            top: 50%;
-            left: 32%;
-            transform: translate(-50%, -50%);
-            color: white;
-            /* Ubah warna teks menjadi putih */
-            text-align: left;
-            font-family: Arial, sans-serif;
-            /* Sesuaikan font */
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('/font/montserrat/Montserrat-bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal
         }
 
-        .text-overlay h1 {
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('/font/montserrat/Montserrat-Semibold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal
+        }
+
+        /* Definisikan font Montserrat Extra Bold */
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('/fonts/montserrat/Montserrat-ExtraBold.ttf') format('truetype');
+            font-weight: 800;
+            /* Extra Bold */
+            font-style: normal;
+        }
+        li {
+            font-family: 'Montserrat';
+            font-weight: 600;
+        }
+        .ebmont {
+            font-family: 'Montserrat';
+            font-weight: 800;
+        }
+
+        .limabelas {
+            font-family: 'Montserrat';
+            font-size: 15px;
+        }
+
+        .enambelas {
+            font-family: 'Montserrat';
+            font-size: 16px;
+        }
+
+        .tujuhbelas {
+            font-family: 'Montserrat';
             font-size: 17px;
-            /* Sesuaikan ukuran */
-            font-weight: bold;
-            margin: 0;
-            color: white;
-            /* Pastikan warna teks tetap putih */
         }
 
-        .text-overlay h2 {
-            font-size: 11px;
-            /* Sesuaikan ukuran */
-            font-weight: normal;
-            margin: 5px 0 0;
-            color: white;
-            /* Pastikan warna teks tetap putih */
+        .duaempat {
+            font-family: 'Montserrat';
+            font-size: 24px;
+        }
+
+        .bungkus {
+            border: 1px solid black;
         }
     </style>
 
@@ -183,7 +214,6 @@
 
 
 @yield('konten')
-
 
 
 @include('layout.footbar')
@@ -292,7 +322,8 @@
                     });
             } /* END OF revapi call */
         } /* END OF ON LOAD FUNCTION */
-    })(); /* END OF WRAPPING FUNCTION */
+    })();
+    /* END OF WRAPPING FUNCTION */
 </script>
 
 </html>

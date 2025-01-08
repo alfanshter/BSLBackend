@@ -1,6 +1,10 @@
 @extends('template.main')
 
 @section('container')
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/render.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <div class="page-header">
         <h3 class="page-title"> Job Safety Analysis Rev </h3>
         <a href="javascript:void(0)" class="btn btn-gradient-primary btn-icon-text btn-md" onClick="add()">
@@ -23,7 +27,7 @@
                                 <th> Action </th>
                                 <th> File Name </th>
                                 <th> User Created </th>
-                                <th> Created at</th>
+                                <th> Created at </th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -32,6 +36,9 @@
                 </div>
             </div>
         </div>
+
+        <x-popup />
+
         <!-- Modal -->
         <div class="modal fade" id="modalGroup" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
@@ -96,7 +103,8 @@
                         <input type="hidden" id="editId"> <!-- Input hidden untuk ID -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeedit">Batal</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="closeedit">Batal</button>
                         <button type="button" class="btn btn-primary" id="editRev">Simpan Perubahan</button>
                     </div>
                 </div>
@@ -108,53 +116,49 @@
         {{-- <script src="{{ asset('/js/myjs.js') }}"></script> --}}
         <script type="text/javascript">
             $(document).ready(function() {
+                // Setup CSRF token untuk AJAX
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                $(document).ready(function() {
-                    var table = $('#user-group').DataTable({
-                        // processing: true,
-                        serverSide: true,
-                        ajax: "/job-safety-analysis-rev",
-                        columns: [
-                            // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                            {
-                                data: 'action',
-                                name: 'action',
-                                orderable: false
-                            },
-                            {
-                                data: 'file',
-                                name: 'file'
-                            },
-                            {
-                                data: 'user_id',
-                                name: 'user_id'
-                            },
-                            {
-                                data: 'created_at',
-                                name: 'created_at'
-                            },
-                        ]
-                    });
+
+                // Inisialisasi DataTables
+                var table = $('#user-group').DataTable({
+                    serverSide: true, // Aktifkan server-side processing
+                    ajax: "/job-safety-analysis", // URL endpoint untuk data
+                    columns: [{
+                            data: 'action',
+                            name: 'action',
+                            orderable: false
+                        },
+                        {
+                            data: 'file',
+                            name: 'file'
+                        },
+                        {
+                            data: 'user_id',
+                            name: 'user_id'
+                        },
+                        {
+                            data: 'created_at',
+                            name: 'created_at'
+                        },
+                    ],
+                    // Tampilkan loader sebelum request dikirim
+                    preXhr: function() {
+                        $('#render-loader').show(); // Tampilkan loader
+                    },
+                    // Sembunyikan loader setelah request selesai
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.addEventListener('loadend', function() {
+                            $('#render-loader').hide(); // Sembunyikan loader
+                        });
+                        return xhr;
+                    }
                 });
             });
-
-
-
-            function add() {
-                $('#add-group').trigger("reset");
-                $('#exampleModalLabel').html("Add Group");
-                $('#modalGroup').modal('show');
-                $('#id').val('');
-            }
-
-            $("#close").click(function() {
-                $("#modalGroup").modal('hide');
-            });
-
             // Fungsi untuk mengedit data
             // Fungsi untuk menampilkan modal edit
             function editFunc(id) {
@@ -203,19 +207,54 @@
                         console.log(data);
 
                         if (data.status == 1) {
-                            alert('Data berhasil disimpan');
                             $('#editGroup').modal('hide'); // Tutup modal
-                            var oTable = $('#user-group').dataTable();
-                            oTable.fnDraw(false);
-                            // Perbarui tampilan secara dinamis
-                            $('#file-' + id).text(data.file); // Update nama file di tabel
+
+                            $(".custom-modal").removeClass("active"); // Sembunyikan modal lain
+
+                            // Tampilkan loader sebelum memulai reload tabel
+                            $('#render-loader').show();
+
+                            // Reload tabel dengan ajax
+                            $('#user-group').DataTable().ajax.reload(function() {
+                                // Sembunyikan loader setelah tabel selesai di-reload
+                                $('#render-loader').hide();
+
+                                // Tampilkan pesan sukses
+                                $("#edit-message").text(data.edit); // Gunakan pesan dari server
+
+                                // Tampilkan pop-up sukses
+                                $('#success-edit-message').addClass('active');
+
+                                // Sembunyikan pop-up setelah 3 detik
+                                setTimeout(function() {
+                                    $('#success-edit-message').removeClass('active');
+                                }, 2000);
+
+                                // Perbarui tampilan nama file di tabel
+                                $('#file-' + id).text(data.file); // Update nama file di tabel
+                            });
                         } else {
-                            alert('Terjadi kesalahan: ');
+                            alert('Terjadi kesalahan: ' + data.error); // Tampilkan pesan error jika ada
                         }
                     },
-                    error: function(xhr, status, error) {
-                        console.error('Error:', error);
-                        alert('Terjadi kesalahan saat mengirim data');
+                    error: function(error) {
+                        $('#editGroup').modal('hide'); // Tutup modal
+                        $(".custom-modal").removeClass(
+                            "active"); // Pastikan modal yang ada di halaman lain disembunyikan
+
+                        // Mengubah teks pada elemen dengan id 'deletes-message'
+                        $("#edir-message").text(error
+                            .edir
+                        ); // Gunakan `res.message` jika server mengirimkan pesan dalam `message`
+
+                        // Tampilkan pop-up
+                        $('#error-edit-message').addClass('active'); // Tampilkan pop-up
+
+                        // Pop-up akan hilang setelah 3 detik
+                        setTimeout(function() {
+                            $('#error-edit-message').removeClass(
+                                'active'); // Sembunyikan pop-up
+                        }, 2000);
                     }
                 });
             });
@@ -242,12 +281,48 @@
                     url: "{{ url('delete-jsa') }}/" + deleteId, // Kirim ID sebagai bagian dari URL
                     dataType: 'json',
                     success: function(res) {
-                        $('#user-group').DataTable().ajax.reload(); // Reload tabel
-                        alert(res.message); // Tampilkan pesan sukses
+                        // Sembunyikan modal lain yang aktif
+                        $(".custom-modal").removeClass("active");
+
+                        // Tampilkan loader sebelum memulai reload tabel
+                        $('#render-loader').show();
+
+                        // Reload tabel dengan ajax
+                        $('#user-group').DataTable().ajax.reload(function() {
+                            // Sembunyikan loader setelah tabel selesai di-reload
+                            $('#render-loader').hide();
+
+                            // Tampilkan pesan sukses dari server
+                            $("#deletes-message").text(res.deletes);
+
+                            // Tampilkan pop-up sukses
+                            $('#success-delete-message').addClass('active');
+
+                            // Sembunyikan pop-up setelah 2 detik
+                            setTimeout(function() {
+                                $('#success-delete-message').removeClass('active');
+                            }, 2000); // Pop-up akan hilang setelah 2 detik
+                        });
                     },
                     error: function(xhr, status, error) {
-                        console.error("Error:", xhr.responseJSON);
-                        alert("Terjadi kesalahan saat menghapus data."); // Tampilkan pesan error
+                        $(".custom-modal").removeClass(
+                            "active"); // Pastikan modal yang ada di halaman lain disembunyikan
+
+                        $('#user-group').DataTable().ajax.reload(); // Reload tabel
+
+                        // Mengubah teks pada elemen dengan id 'deletes-message'
+                        $("#deleter-message").text(res
+                            .deleter
+                        ); // Gunakan `res.message` jika server mengirimkan pesan dalam `message`
+
+                        // Tampilkan pop-up
+                        $('#error-delete-message').addClass('active'); // Tampilkan pop-up
+
+                        // Pop-up akan hilang setelah 3 detik
+                        setTimeout(function() {
+                            $('#error-delete-message').removeClass(
+                                'active'); // Sembunyikan pop-up
+                        }, 2000); // Pop-up akan hilang setelah 3 detikn pesan error
                     }
                 });
             });
@@ -257,8 +332,19 @@
                 $('#deleteModal').modal('hide'); // Sembunyikan modal
             });
 
+            function add() {
+                $('#add-group').trigger("reset");
+                $('#exampleModalLabel').html("Add Group");
+                $('#modalGroup').modal('show');
+                $('#id').val('');
+            }
+
+            $("#close").click(function() {
+                $("#modalGroup").modal('hide');
+            });
+
             $('#add-group').submit(function(e) {
-                e.preventDefault();
+                e.preventDefault(); // Cegah form dari submit default
                 var formData = new FormData(this);
 
                 $.ajax({
@@ -268,15 +354,61 @@
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success: (data) => {
+                    beforeSend: function() {
+                        // Tutup modal setelah tombol Submit ditekan
                         $("#modalGroup").modal('hide');
+
+                        // Tampilkan loader setelah modal ditutup
+                        setTimeout(function() {
+                            $('#render-loader').show();
+                        }, 300); // Delay kecil untuk memastikan modal sudah tertutup
+                    },
+                    success: (response) => {
+                        // Sembunyikan loader setelah request selesai
+                        $('#render-loader').hide();
+
+                        // Sembunyikan semua pop-up terlebih dahulu
+                        $(".custom-modal").removeClass("active");
+
+                        // Cek status dari respons server
+                        if (response.status === 1) {
+                            // Tampilkan pop-up sukses dengan pesan dari server
+                            $("#success-modal .message-type").text(response.success);
+                            $("#success-modal").addClass("active");
+                            setTimeout(function() {
+                                $("#success-modal").removeClass("active");
+                            }, 2000); // Pop-up akan hilang setelah 2 detik
+                        } else {
+                            // Tampilkan pop-up error dengan pesan dari server
+                            $("#error-modal .message-type").text(response.error);
+                            $("#error-modal").addClass("active");
+                            setTimeout(function() {
+                                $("#error-modal").removeClass("active");
+                            }, 2000); // Pop-up akan hilang setelah 2 detik
+                        }
+
+                        // Operasi lainnya
                         var oTable = $('#user-group').dataTable();
-                        oTable.fnDraw(false);
+                        oTable.fnDraw(false); // Reload tabel
+
                         $("#btn-save").html('Submit');
                         $("#btn-save").attr("disabled", false);
                     },
-                    error: function(data) {
-                        console.log(data);
+                    error: (data) => {
+                        // Sembunyikan loader setelah request selesai
+                        $('#render-loader').hide();
+
+                        // Sembunyikan semua pop-up terlebih dahulu
+                        $(".custom-modal").removeClass("active");
+
+                        // Tampilkan pop-up error dengan pesan default
+                        $("#error-modal .message-type").text("Terjadi kesalahan saat mengunggah file.");
+                        $("#error-modal").addClass("active");
+                        setTimeout(function() {
+                            $("#error-modal").removeClass("active");
+                        }, 2000); // Pop-up akan hilang setelah 2 detik
+
+                        console.error(data); // Cetak error untuk debugging
                     }
                 });
             });
