@@ -147,6 +147,27 @@
             overflow-y: visible;
             /* Memastikan overflow vertikal tidak diatur */
         }
+        .text-overlay {
+            position: absolute;
+            bottom: 20px; /* Posisi teks sedikit di atas bagian bawah */
+            left: 12px; /* Posisi teks dari kiri */
+            color: white; /* Warna teks */
+            text-align: left; /* Rata kiri */
+        }
+
+        h1 {
+            font-size: 1.1rem; /* Ukuran font untuk h1 */
+            font-weight: bold;
+            margin: 0;
+            color: white;/* Hilangkan margin default */
+        }
+
+        h2 {
+            font-size: 0.9rem; /* Ukuran font untuk h2 */
+            font-weight: 400;
+            margin: 5px 0 0 0;
+            color: white; /* Hilangkan margin default */
+        }
 
         @font-face {
             font-family: 'Montserrat';

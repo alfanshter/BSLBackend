@@ -354,7 +354,7 @@
                                 data-hh="" data-no-retina />
                             <span class="text-overlay">
                                 <h1> TOTAL <br> MAINTANENCE <br> SERVER</h1>
-                                <h2>PT TROUW NUTRITION <br> INDONESIA</h2>
+                                <h2>PT TROUW <br> NUTRITION INDONESIA</h2>
                             </span>
                         </div>
 

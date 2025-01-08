@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.9); /* Latar belakang hitam dengan opacity 90% */
+    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang hitam dengan opacity 90% */
     z-index: 1000; /* Pastikan loader di atas elemen lain */
 }
 
