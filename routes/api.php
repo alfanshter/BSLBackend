@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\DailyActivityController;
+use App\Http\Controllers\JobRevisiController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\UserGroupController;
 
@@ -23,6 +24,9 @@ use App\Http\Controllers\UserGroupController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::post('/jsa-post', [JobRevisiController::class, 'store']);
+
 Route::post('/auth', [AuthController::class, 'loginApi']);
 Route::post('/create_user', [AuthController::class, 'create_user']);
 Route::get('/profilApi', [UserController::class, 'profilApi']);

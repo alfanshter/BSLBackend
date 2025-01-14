@@ -11,7 +11,14 @@ class Report extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $fillable = [
-        'id_user', 'date', 'check_in', 'picture_in', 'check_out', 'picture_out'
+        'id_user',
+        'date',
+        'check_in',
+        'picture_in',
+        'check_out',
+        'picture_out',
+        'address_in',
+        'address_out',
     ];
 
     public function grup()

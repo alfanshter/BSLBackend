@@ -20,18 +20,47 @@
                     </div>
                 @endif
                 <div class="table-responsive">
-                    {{-- {{ $dataTable->table() }} --}}
+
+                    <!-- DataTable untuk menampilkan hasil -->
                     <table class="table table-striped table-bordered" id="user-group">
                         <thead>
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Filter
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li>
+                                                <a class="dropdown-item" href="#" id="filterLastYear">Last Year</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#" id="filterLastMonth">Last Month</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#" id="filterLastWeek">Last Week</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#customDateModal">Custom Time</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <button id="refreshData" class="btn btn-primary">Refresh Data</button>
+                                </div>
+                            </div>
                             <tr>
-                                <th> Action </th>
-                                <th> File Name </th>
-                                <th> User Created </th>
-                                <th> Created at </th>
+                                <th>Action</th>
+                                <th>File Name</th>
+                                <th>User Created</th>
+                                <th>Tanggal</th>
+                                <th>Created at</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
-
                     </table>
                 </div>
             </div>
@@ -39,30 +68,70 @@
 
         <x-popup />
 
+
+        <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="filterModalLabel">Filter Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="filterForm">
+                            <div class="mb-3">
+                                <label for="start_time" class="form-label">Start Time</label>
+                                <input type="date" class="form-control" id="start_time" name="start_time">
+                            </div>
+                            <div class="mb-3">
+                                <label for="end_time" class="form-label">End Time</label>
+                                <input type="date" class="form-control" id="end_time" name="end_time">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="applyFilter">Apply Filter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Modal -->
         <div class="modal fade" id="modalGroup" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add File</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="add-group" id="add-group" name="add-group" action="javascript:void(0)" method="POST">
-                            <div class="form-group">
+                        <form class="add-group" id="add-group" name="add-group" action="javascript:void(0)" method="POST"
+                            enctype="multipart/form-data">
+                            <div class="form-group mb-3">
                                 <input type="hidden" name="id" id="id">
-                                <label for="exampleInputName1">Insert file</label>
+                                <label for="file" class="form-label">Insert File</label>
                                 <input type="file" class="form-control" id="file" required name="file"
                                     placeholder="Insert file">
                             </div>
+                            <div class="form-group mb-3">
+                                <label for="tanggal" class="form-label">Tanggal</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    id="close">Close</button>
+                                <button type="submit" id="btn-save" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="close">Close</button>
-                        <button type="submit" id="btn-save" class="btn btn-primary">Save</button>
-                    </div>
-                    </form>
                 </div>
             </div>
         </div>
+
 
         <!-- Modal Delete -->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -110,27 +179,58 @@
                 </div>
             </div>
         </div>
+
+        {{-- modal custom edit --}}
+        <div class="modal fade" id="customDateModal" tabindex="-1" aria-labelledby="customDateModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="customDateModalLabel">Select Custom Date Range</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="customDateForm">
+                            <div class="mb-3">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" id="startDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" id="endDate" required>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="filterByCustomDate()">Apply</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endsection
 
     @push('script')
         {{-- <script src="{{ asset('/js/myjs.js') }}"></script> --}}
         <script type="text/javascript">
             $(document).ready(function() {
-                // Setup CSRF token untuk AJAX
+
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-
                 // Inisialisasi DataTables
                 var table = $('#user-group').DataTable({
-                    serverSide: true, // Aktifkan server-side processing
-                    ajax: "/job-safety-analysis", // URL endpoint untuk data
+                    processing: true,
+                    serverSide: false,
+                    ajax: {
+                        url: '/job-safety-analysis', // Endpoint untuk mengambil data awal
+                        type: 'GET',
+                        dataSrc: function(json) {
+                            return json.data
+                        }
+                    },
                     columns: [{
                             data: 'action',
-                            name: 'action',
-                            orderable: false
+                            name: 'action'
                         },
                         {
                             data: 'file',
@@ -141,25 +241,208 @@
                             name: 'user_id'
                         },
                         {
+                            data: 'tanggal',
+                            name: 'tanggal'
+                        },
+                        {
                             data: 'created_at',
                             name: 'created_at'
+                        }
+                    ]
+                });
+
+
+                $('#refreshData').on('click', function() {
+                    $('#user-group').DataTable().ajax.reload(); // Reload data tabel
+                });
+
+                $('#applyFilter').on('click', function() {
+                    var startTime = $('#start_time').val();
+                    var endTime = $('#end_time').val();
+
+                    // Kirim permintaan AJAX untuk filter
+                    $.ajax({
+                        url: '/filter-by-time', // Endpoint untuk filter
+                        type: 'GET',
+                        data: {
+                            start_time: startTime,
+                            end_time: endTime
                         },
-                    ],
-                    // Tampilkan loader sebelum request dikirim
-                    preXhr: function() {
-                        $('#render-loader').show(); // Tampilkan loader
-                    },
-                    // Sembunyikan loader setelah request selesai
-                    xhr: function() {
-                        var xhr = new window.XMLHttpRequest();
-                        xhr.addEventListener('loadend', function() {
-                            $('#render-loader').hide(); // Sembunyikan loader
-                        });
-                        return xhr;
-                    }
+                        success: function(response) {
+                            if (response.status === 200) {
+                                // Perbarui tabel dengan data yang difilter
+                                table.clear().rows.add(response.data).draw();
+                                // Tutup modal setelah filter diterapkan
+                                $('#filterModal').modal('hide');
+                            } else {
+                                alert(response.message);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert('An error occurred while filtering data.');
+                        }
+                    });
                 });
             });
-            // Fungsi untuk mengedit data
+
+            // function filter custom date
+            function filterByCustomDate() {
+                // Ambil nilai waktu dari input
+                const startTime = $('#startDate').val(); // Ambil waktu mulai
+                const endTime = $('#endDate').val(); // Ambil waktu akhir
+
+                // Validasi input
+                if (!startTime || !endTime) {
+                    alert('Please select both start and end times.');
+                    return;
+                }
+
+                // Pastikan format tanggal sesuai (YYYY-MM-DD)
+                if (new Date(startTime) > new Date(endTime)) {
+                    alert('Start time cannot be after end time.');
+                    return;
+                }
+
+                // Kirim request AJAX ke server
+                $.ajax({
+                    url: '/filter-files-time', // Sesuaikan dengan endpoint Anda
+                    method: 'GET', // Gunakan method GET atau POST, sesuaikan dengan controller
+                    data: {
+                        start_time: startTime,
+                        end_time: endTime
+                    },
+                    success: function(response) {
+                        console.log(response.data); // Untuk debug response
+
+                        // Ambil instance DataTable
+                        const table = $('#user-group').DataTable();
+
+                        // Hapus data lama dari tabel
+                        table.clear();
+
+                        // Filter dan map data sebelum menambahkan ke tabel
+                        const filteredData = response.data.map(function(file) {
+                            return {
+                                action: file.action,
+                                file: file.file,
+                                user_id: file.user_id || 'N/A', // Gunakan 'N/A' jika user_id tidak ada
+                                tanggal: file.tanggal, // Tanggal
+                                created_at: file.created_at, // Created at
+                            };
+                        });
+
+                        // Tambahkan data baru ke tabel
+                        table.rows.add(filteredData).draw();
+
+                        // Tutup modal filter
+                        $('#customDateModal').modal('hide');
+                    },
+                    error: function(error) {
+                        console.error(error);
+                        alert('An error occurred while filtering files.');
+                    }
+                });
+            }
+
+            // function 3 menu
+            function getDateRange(filterType) {
+                const today = new Date();
+                let startTime, endTime;
+
+                switch (filterType) {
+                    case 'lastYear':
+                        startTime = new Date(today.getFullYear() - 1, 0, 1);
+                        endTime = new Date(today.getFullYear() - 1, 11, 31);
+                        break;
+                    case 'lastMonth':
+                        startTime = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                        endTime = new Date(today.getFullYear(), today.getMonth(), 0);
+                        break;
+                    case 'lastWeek':
+                        startTime = new Date(today);
+                        startTime.setDate(today.getDate() - today.getDay() - 7);
+                        endTime = new Date(today);
+                        endTime.setDate(today.getDate() - today.getDay() - 1);
+                        break;
+                    default:
+                        startTime = null;
+                        endTime = null;
+                }
+
+                return {
+                    startTime: startTime.toISOString().split('T')[0],
+                    endTime: endTime.toISOString().split('T')[0]
+                };
+            }
+
+            $(document).ready(function() {
+                $('#filterLastYear').on('click', function() {
+                    const {
+                        startTime,
+                        endTime
+                    } = getDateRange('lastYear');
+                    applyFilter(startTime, endTime);
+                });
+
+                $('#filterLastMonth').on('click', function() {
+                    const {
+                        startTime,
+                        endTime
+                    } = getDateRange('lastMonth');
+                    applyFilter(startTime, endTime);
+                });
+
+                $('#filterLastWeek').on('click', function() {
+                    const {
+                        startTime,
+                        endTime
+                    } = getDateRange('lastWeek');
+                    applyFilter(startTime, endTime);
+                });
+            });
+
+            function applyFilter(startTime, endTime) {
+                $.ajax({
+                    url: '/filter-files-time',
+                    type: 'GET',
+                    data: {
+                        start_time: startTime,
+                        end_time: endTime
+                    },
+                    success: function(response) {
+                        if (response.status === 200) {
+                            // Perbarui tabel dengan data yang difilter
+                            const table = $('#user-group').DataTable();
+                            table.clear().rows.add(response.data).draw();
+                        } else {
+                            // Tampilkan pop-up error jika data tidak ditemukan atau status bukan 200
+                            $(".custom-modal").removeClass("active"); // Sembunyikan semua pop-up
+                            $("#notfound-message").text(response.message ||
+                            "Data tidak ditemukan."); // Set pesan error
+                            $('#notfound-edit-massage').addClass('active'); // Tampilkan pop-up
+
+                            // Sembunyikan pop-up setelah 2 detik
+                            setTimeout(function() {
+                                $('#notfound-edit-massage').removeClass('active');
+                            }, 2000);
+                        }
+                    },
+                    error: function(error) {
+                        // Tampilkan pop-up error jika terjadi kesalahan pada request
+                        $(".custom-modal").removeClass("active"); // Sembunyikan semua pop-up
+                        $("#notfound-message").text(error.notfound); // Set pesan error
+                        $('#notfound-edit-massage').addClass('active'); // Tampilkan pop-up
+
+                        // Sembunyikan pop-up setelah 2 detik
+                        setTimeout(function() {
+                            $('#notfound-edit-massage').removeClass('active');
+                        }, 2000);
+
+                        console.error("Error:", error); // Cetak error untuk debugging
+                    }
+                });
+            }
+
             // Fungsi untuk menampilkan modal edit
             function editFunc(id) {
                 // Ambil tombol yang diklik
@@ -349,7 +632,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: "{{ url('jsa-post') }}",
+                    url: "/jsa-post",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -370,11 +653,17 @@
                         // Sembunyikan semua pop-up terlebih dahulu
                         $(".custom-modal").removeClass("active");
 
-                        // Cek status dari respons server
+                        // Tampilkan pop-up berdasarkan status response
                         if (response.status === 1) {
                             // Tampilkan pop-up sukses dengan pesan dari server
                             $("#success-modal .message-type").text(response.success);
                             $("#success-modal").addClass("active");
+
+                            // Reload tabel segera setelah pop-up muncul
+                            $('#user-group').DataTable().ajax.reload(null,
+                                false); // Reload tanpa reset paging
+
+                            // Sembunyikan pop-up setelah 2 detik
                             setTimeout(function() {
                                 $("#success-modal").removeClass("active");
                             }, 2000); // Pop-up akan hilang setelah 2 detik
@@ -382,15 +671,18 @@
                             // Tampilkan pop-up error dengan pesan dari server
                             $("#error-modal .message-type").text(response.error);
                             $("#error-modal").addClass("active");
+
+                            // Reload tabel segera setelah pop-up muncul
+                            $('#user-group').DataTable().ajax.reload(null,
+                                false); // Reload tanpa reset paging
+
+                            // Sembunyikan pop-up setelah 2 detik
                             setTimeout(function() {
                                 $("#error-modal").removeClass("active");
                             }, 2000); // Pop-up akan hilang setelah 2 detik
                         }
 
-                        // Operasi lainnya
-                        var oTable = $('#user-group').dataTable();
-                        oTable.fnDraw(false); // Reload tabel
-
+                        // Reset tombol submit
                         $("#btn-save").html('Submit');
                         $("#btn-save").attr("disabled", false);
                     },
@@ -402,7 +694,7 @@
                         $(".custom-modal").removeClass("active");
 
                         // Tampilkan pop-up error dengan pesan default
-                        $("#error-modal .message-type").text("Terjadi kesalahan saat mengunggah file.");
+                        $("#notfound-data .message-type").text(response.error);
                         $("#error-modal").addClass("active");
                         setTimeout(function() {
                             $("#error-modal").removeClass("active");

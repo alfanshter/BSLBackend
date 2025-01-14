@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\Filejsa;
+use DB;
+use Carbon\Carbon;
 use App\Models\Jsarev;
 use App\Models\UserGroup;
-use App\DataTables\UserGroupDataTable;
+use App\DataTables\Filejsa;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use DataTables;
+use App\DataTables\UserGroupDataTable;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class JobRevisiController extends Controller
 {
@@ -19,30 +24,72 @@ class JobRevisiController extends Controller
     //     // return view('usergroup.index');
     // }
 
-    public function index(Request $request)
+    public function index(Request $request): mixed
     {
-
         if (Auth::check()) {
             if ($request->ajax()) {
-                $data = Jsarev::with('user')->select('id', 'file', 'user_id', 'created_at')->get();
+                $data = Jsarev::with('user')->get();
                 return DataTables::of($data)
                     ->addColumn('user_id', function ($jsarev) {
-                        return $jsarev->user->name; // Mengambil nama user dari relasi
+                        return $jsarev->user->name; // Ambil nama user dari relasi
                     })
                     ->addColumn('action', function ($jsarev) {
                         return view('job.action', compact('jsarev'))->render();
-                    })->addColumn('file', function ($jsarev) {
+                    })
+                    ->addColumn('file', function ($jsarev) {
                         return basename($jsarev->file); // Ambil hanya nama file
                     })
+                    ->addColumn('tanggal', function ($jsarev) {
+                        return $jsarev->tanggal;
+                    })
                     ->addColumn('created_at', function ($jsarev) {
-                        return $jsarev->created_at->format('d-m-Y H:i:s'); // Mengambil dan menampilkan created_at
+                        return $jsarev->created_at->format('d-m-Y H:i:s'); // Format tanggal
                     })
                     ->make(true);
             }
-            return view('job.rev');
+
+            return view('job.rev'); // Tampilkan view utama
         }
+
         return redirect("login")->withSuccess('You are not allowed to access');
     }
+
+
+
+    public function filterByTime(Request $request)
+    {
+        $startTime = $request->input('start_time');
+        $endTime = $request->input('end_time');
+
+        // Jika tidak ada filter, ambil semua data
+        $query = Jsarev::with('user'); // Pastikan relasi user di-load
+
+        // Jika ada filter, terapkan
+        if ($startTime && $endTime) {
+            $query->whereDate('tanggal', '>=', $startTime)
+                ->whereDate('tanggal', '<=', $endTime);
+        }
+
+        $data = $query->get();
+
+        // Format data sesuai dengan DataTables
+        $formattedData = $data->map(function ($jsarev) {
+            return [
+                'action' => view('job.action', compact('jsarev'))->render(),
+                'file' => basename($jsarev->file),
+                'user_id' => $jsarev->user ? $jsarev->user->name : 'N/A', // Handle jika user tidak ada
+                'tanggal' => $jsarev->tanggal,
+                'created_at' => $jsarev->created_at->format('d-m-Y H:i:s'),
+            ];
+        });
+
+        return response()->json([
+            'message' => $data->isEmpty() ? 'No files found' : 'Files fetched successfully',
+            'status' => $data->isEmpty() ? 404 : 200,
+            'data' => $formattedData
+        ]);
+    }
+
 
     // public function index(Request $request)
     // {
@@ -65,8 +112,12 @@ class JobRevisiController extends Controller
     {
         // Validasi input
         $validatedData = $request->validate([
-            'file' => 'required|file|mimes:docx,xls,xlsx,pdf,doc|max:51200', // File wajib diisi
+            'file' => 'required|file|mimes:docx,xls,xlsx,pdf,doc|max:51200',
+            'tanggal' => 'required|date', // Validasi tanggal
         ]);
+
+        $data = $request->all();
+        Log::info("tester", $data);
 
         if (Auth::check()) {
             // Proses file
@@ -78,19 +129,20 @@ class JobRevisiController extends Controller
                 $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
                 // Tambahkan timestamp ke nama file
-                $timestamp = now()->format('Ymd_His'); // Format: TahunBulanTanggal_JamMenitDetik
+                $timestamp = now()->format('Ymd_His');
 
                 // Gabungkan nama file dengan timestamp dan ekstensi
                 $newFileName = "{$originalName}({$timestamp}).{$file->getClientOriginalExtension()}";
 
-                // Simpan file ke direktori storage/app/docs
-                $file->storeAs('docs', $newFileName);
+                // Simpan file ke direktori storage/app/public/docs
+                $file->storeAs('public/docs', $newFileName);
             }
 
             // Simpan data ke database
             $jsarev = Jsarev::create([
-                'file' => $newFileName, // Simpan hanya nama file
-                'user_id' => Auth::id(), // ID user yang sedang login
+                'file' => $newFileName,
+                'user_id' => Auth::id(),
+                'tanggal' => $request->tanggal, // Simpan tanggal (YYYY-MM-DD)
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -99,15 +151,12 @@ class JobRevisiController extends Controller
                 'message' => 'File uploaded successfully.',
                 'data' => $jsarev,
                 'status' => 1,
-                'file_url' => asset('storage/docs/' . $newFileName), // URL file
+                'file_url' => asset('storage/docs/' . $newFileName), // URL publik ke file
             ]);
         }
 
-        return response()->json(['message' => 'You are not allowed to access.'], 403);
+        return response()->json(['message' => 'You are not allowed to access.'], 201);
     }
-
-
-
     public function edit(Request $request)
     {
         // Validasi data
@@ -137,7 +186,7 @@ class JobRevisiController extends Controller
         $data->file = $newFileName;
         $data->save();
 
-        return response()->json(['message' => 'File berhasil diperbarui','status' => 1], 200);
+        return response()->json(['message' => 'File berhasil diperbarui', 'status' => 1], 200);
     }
 
     public function delete($id)
@@ -148,8 +197,8 @@ class JobRevisiController extends Controller
         }
 
         // Hapus file dari direktori storage/app/docs
-        if ($jsarev->file && file_exists(storage_path('app/docs/' . $jsarev->file))) {
-            unlink(storage_path('app/docs/' . $jsarev->file)); // Hapus file
+        if ($jsarev->file && file_exists(storage_path('app/public/docs/' . $jsarev->file))) {
+            unlink(storage_path('app/public/docs/' . $jsarev->file)); // Hapus file
         }
 
         // Hapus data dari database

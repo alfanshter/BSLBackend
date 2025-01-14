@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Report;
 use App\Models\UserGroup;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Exports\ReportExport;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
-use App\Exports\ReportExport;
-use App\Models\User;
-use Maatwebsite\Excel\Facades\Excel;
 
 
 class AttendenceController extends Controller
@@ -89,23 +90,25 @@ class AttendenceController extends Controller
 
     public function checkin(Request $request)
     {
-
-        //cek absen apakah ada 
-        $cekabsen = Report::where('id_user', $request->id_user)->where('date', date('Y-m-d', time()))->first();
+        // Cek absen apakah sudah ada
+        $cekabsen = Report::where('id_user', $request->id_user)
+            ->where('date', date('Y-m-d', time()))
+            ->first();
         if ($cekabsen != null) {
             $response = [
-                'message' => 'success',
+                'message' => 'Anda sudah melakukan check-in hari ini.',
                 'sukses' => 0,
                 'data' => null
             ];
-
             return response()->json($response, Response::HTTP_CREATED);
         }
 
+        // Validasi input
         $validator = Validator::make($request->all(), [
-            'id_user' => 'required'
+            'id_user' => 'required',
+            'address_in' => 'nullable|string', // Alamat check-in
+            'picture_in' => 'nullable|image|mimes:jpg,png,jpeg|max:5120', // Validasi format dan ukuran file
         ]);
-
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -113,38 +116,38 @@ class AttendenceController extends Controller
 
         $data = $request->all();
 
+        // Proses upload dan kompresi gambar
         if ($request->file('picture_in')) {
-            //compress foto 
             $foto = $request->file('picture_in');
-            $fotoName = time() . '.' . $foto->extension();
 
-            // open an image file
+            // Ambil nama asli file
+            $originalName = $foto->getClientOriginalName(); // Nama file dengan ekstensi
+
+            // Proses kompresi gambar
             $img = Image::make($foto->path());
-
-            // prevent possible upsizing
             $img->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
 
-            // finally we save the image as a new file
-            $destinationPath = public_path('/storage/foto/' . $fotoName);
-            $data['picture_in'] = 'foto/' . $fotoName;
+            // Simpan gambar ke folder public/storage/foto
+            $destinationPath = public_path('/storage/foto/' . $originalName);
             $img->save($destinationPath);
 
-
-            // $data['picture_in'] = $request->file('picture_in')->store('foto', 'public');
+            // Simpan path gambar ke database
+            $data['picture_in'] = 'foto/' . $originalName;
         }
 
+        // Set waktu dan tanggal
         date_default_timezone_set('Asia/Jakarta');
-        $hari = date('Y-m-d', time());
-
         $data['date'] = date('Y-m-d', time());
         $data['check_in'] = date('Y-m-d H:i:s', time());
+
+        // Simpan data ke database
         $user = Report::create($data);
 
         $response = [
-            'message' => 'success',
+            'message' => 'Check-in berhasil.',
             'sukses' => 1,
             'data' => $data
         ];
@@ -154,71 +157,69 @@ class AttendenceController extends Controller
 
     public function checkout(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
-            'id_user' => 'required'
+            'id_user' => 'required',
+            'address_out' => 'nullable|string', // Alamat check-out
+            'picture_out' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Validasi untuk gambar check-out
+            'overtime' => 'nullable|numeric', // Validasi overtime
         ]);
-
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        //cek absen apakah ada 
-        $cekabsen = Report::where('id_user', $request->id_user)->where('date', date('Y-m-d', time()))
+        // Cek apakah ada data check-in hari ini
+        $cekabsen = Report::where('id_user', $request->id_user)
+            ->where('date', date('Y-m-d', time()))
             ->first();
+
         if ($cekabsen != null) {
+            // Jika sudah check-out sebelumnya
             if ($cekabsen->check_out != null) {
-                //sudah absen
                 $response = [
-                    'message' => 'success',
+                    'message' => 'Anda sudah melakukan check-out hari ini.',
                     'sukses' => 2,
                     'data' => null
                 ];
-
                 return response()->json($response, Response::HTTP_CREATED);
             } else {
-
+                // Proses check-out
                 $data = $request->all();
 
+                // Handle overtime
                 if ($request->overtime) {
-                    if ($request->overtime == 'kosong') {
-                        unset($data['overtime']);
-                    } else {
-                        $data['overtime'] = (int)$request->overtime;
-                    }
+                    $data['overtime'] = (int)$request->overtime;
                 }
+
+                // Handle picture_out
                 if ($request->file('picture_out')) {
-                    //compress foto 
                     $foto = $request->file('picture_out');
-                    $fotoName = time() . '.' . $foto->extension();
+                    $fotoName = time() . '.' . $foto->getClientOriginalExtension(); // Nama file unik
 
-                    // open an image file
+                    // Kompresi gambar
                     $img = Image::make($foto->path());
-
-                    // prevent possible upsizing
                     $img->resize(null, 200, function ($constraint) {
                         $constraint->aspectRatio();
                         $constraint->upsize();
                     });
 
-                    // finally we save the image as a new file
+                    // Simpan gambar ke folder public/storage/foto
                     $destinationPath = public_path('/storage/foto/' . $fotoName);
-                    $data['picture_out'] = 'foto/' . $fotoName;
                     $img->save($destinationPath);
 
-                    // $data['picture_out'] = $request->file('picture_out')->store('foto', 'public');
+                    // Simpan path gambar ke database
+                    $data['picture_out'] = 'foto/' . $fotoName;
                 }
 
+                // Set waktu check-out
                 date_default_timezone_set('Asia/Jakarta');
-                $hari = date('Y-m-d', time());
-
-                // $data['check_out'] = date(now());
                 $data['check_out'] = date('Y-m-d H:i:s', time());
-                $user = Report::where('id', $cekabsen->id)->update($data);
+
+                // Update data check-out ke record yang sama dengan check-in
+                Report::where('id', $cekabsen->id)->update($data);
 
                 $response = [
-                    'message' => 'success',
+                    'message' => 'Check-out berhasil.',
                     'sukses' => 1,
                     'data' => $data
                 ];
@@ -226,62 +227,9 @@ class AttendenceController extends Controller
                 return response()->json($response, Response::HTTP_CREATED);
             }
         } else {
-            //cek absen hari sebelumnya apakah sudah absen pulang atau belum
-            $cekabsensebelum = Report::where('id_user', $request->id_user)
-                ->where('date', now()->subDay()->format('Y-m-d'))
-                ->first();
-
-            if ($cekabsensebelum->picture_in != null && $cekabsensebelum->picture_out == null) {
-
-                $data = $request->all();
-
-                if ($request->overtime) {
-                    if ($request->overtime == 'kosong') {
-                        unset($data['overtime']);
-                    } else {
-                        $data['overtime'] = (int)$request->overtime;
-                    }
-                }
-                if ($request->file('picture_out')) {
-                    //compress foto 
-                    $foto = $request->file('picture_out');
-                    $fotoName = time() . '.' . $foto->extension();
-
-                    // open an image file
-                    $img = Image::make($foto->path());
-
-                    // prevent possible upsizing
-                    $img->resize(null, 200, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    });
-
-                    // finally we save the image as a new file
-                    $destinationPath = public_path('/storage/foto/' . $fotoName);
-                    $data['picture_out'] = 'foto/' . $fotoName;
-                    $img->save($destinationPath);
-
-                    // $data['picture_out'] = $request->file('picture_out')->store('foto', 'public');
-                }
-
-                date_default_timezone_set('Asia/Jakarta');
-                $hari = date('Y-m-d', time());
-
-                // $data['check_out'] = date(now());
-                $data['check_out'] = date('Y-m-d H:i:s', time());
-                $user = Report::where('id', $cekabsensebelum->id)->update($data);
-
-                $response = [
-                    'message' => 'success',
-                    'sukses' => 1,
-                    'data' => $data
-                ];
-
-                return response()->json($response, Response::HTTP_CREATED);
-            }
-            //belum absen masuk
+            // Jika belum check-in sama sekali
             $response = [
-                'message' => 'success',
+                'message' => 'Anda belum melakukan check-in hari ini.',
                 'sukses' => 0,
                 'data' => null
             ];
@@ -289,7 +237,6 @@ class AttendenceController extends Controller
             return response()->json($response, Response::HTTP_CREATED);
         }
     }
-
     public function attendenceApi(Request $request)
     {
         $data = Report::where('id_user', $request->input('id_user'))->get();

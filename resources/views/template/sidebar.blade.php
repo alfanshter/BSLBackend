@@ -30,7 +30,8 @@
       <div class="collapse" id="form-page">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="/job-safety-analysis">Job Safety Analysis</a></li>
-          {{-- <li class="nav-item"> <a class="nav-link" href="/job-safety-analysis">Job Safety Analysis</a></li> --}}
+          <li class="nav-item"> <a class="nav-link" href="/pretty-cast">Pretty Cast</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/npm-view">Npm</a></li>
           <li class="nav-item"> <a class="nav-link" href="/internal-purchase-requestion">Internal Purchase <br>Requestion</a></li>
           <li class="nav-item"> <a class="nav-link" href="/hot-work-premit">Hot Work Premit</a></li>
           {{-- <li class="nav-item"> <a class="nav-link" href="/work-at-height-premit">Work At Height Permit</a></li> --}}

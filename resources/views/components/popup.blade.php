@@ -57,3 +57,13 @@
                 <p id="edir-message" class="message-type">File Gagal Di Edit</p>
             </div>
         </div>
+
+        <!-- Pop-up No FIle Found -->
+        <div id="notfound-edit-massage" class="custom-modal">
+            <div class="danger danger-animation icon-top"><i class="fa fa-times"></i></div>
+            <div class="danger border-bottom"></div>
+            <div class="content">
+                <p class="type">Status</p>
+                <p id="notfound-message" class="message-type">File Tidak Di Temukan</p>
+            </div>
+        </div>

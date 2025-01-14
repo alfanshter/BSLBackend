@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReportsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -25,6 +25,8 @@ class CreateReportsTable extends Migration
             $table->string('picture_in');
             $table->dateTime('check_out')->nullable();
             $table->string('picture_out')->nullable();
+            $table->string('address_in')->nullable();
+            $table->string('address_out')->nullable();
             $table->float('overtime')->nullable();
             $table->timestamps();
         });
@@ -39,4 +41,4 @@ class CreateReportsTable extends Migration
     {
         Schema::dropIfExists('reports');
     }
-}
+};

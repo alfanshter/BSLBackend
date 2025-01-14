@@ -17,6 +17,8 @@ use App\Http\Controllers\FrontSuratIjinController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobRevisiController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\NpmController;
+use App\Http\Controllers\PrettyCastController;
 use App\Http\Controllers\RevisiController;
 use App\Http\Controllers\ServicesController;
 
@@ -82,6 +84,19 @@ Route::post('/jsa-post', [JobRevisiController::class, 'store']);
 Route::delete('/delete-jsa/{id}', [JobRevisiController::class, 'delete']);
 Route::post('/edit-jsa', [JobRevisiController::class, 'edit']);
 Route::get('/download-jsa', [JobRevisiController::class, 'downloadJsa']);
+Route::get('/filter-files-time', [JobRevisiController::class, 'filterByTime']);
+
+Route::get('/pretty-cast', [PrettyCastController::class, 'index']);
+Route::post('/pretty-post', [PrettyCastController::class, 'store']);
+Route::delete('/pretty-delete/{id}', [PrettyCastController::class, 'delete']);
+Route::post('/pretty-edit', [PrettyCastController::class, 'edit']);
+Route::get('/pretty-time', [PrettyCastController::class, 'filterByTime']);
+
+Route::get('/npm-view', [NpmController::class, 'index']);
+Route::post('/npm-post', [NpmController::class, 'store']);
+Route::delete('/npm-delete/{id}', [NpmController::class, 'delete']);
+Route::post('/npm-edit', [NpmController::class, 'edit']);
+Route::get('/npm-time', [NpmController::class, 'filterByTime']);
 
 // Route::get('/job-safety-analysis', [JobController::class, 'index']);
 Route::get('/job-safety-analysis/create', [JobController::class, 'create'])->name('create-job');
@@ -90,6 +105,8 @@ Route::get('/edit/job-safety-analysis/{id}', [JobController::class, 'edit']);;
 Route::post('/update/job-safety-analysis', [JobController::class, 'update']);
 Route::delete('/delete/job-safety-analysis/{id}', [JobController::class, 'destroy']);
 Route::get('/job-safety-analysis/export/{id}', [JobController::class, 'export']);
+
+
 Route::post('/add-aar', [JobController::class, 'storeAar']);
 Route::post('/editadd-aar', [JobController::class, 'editAddAar']);
 Route::post('/edit-aar', [JobController::class, 'updateAar']);
@@ -152,7 +169,6 @@ Route::post('/update/attendence', [AttendenceController::class, 'update']);
 Route::delete('/delete/attendence/{id}', [AttendenceController::class, 'destroy']);
 Route::post('/print_attendence', [AttendenceController::class, 'print_attendence']);
 Route::post('/export_excel', [AttendenceController::class, 'export']);
-
 
 Route::get('/notifikasi', [NotifikasiController::class, 'index_admin']);
 Route::post('/notifikasi', [NotifikasiController::class, 'store']);

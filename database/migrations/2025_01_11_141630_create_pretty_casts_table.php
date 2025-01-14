@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('jsarevs', function (Blueprint $table) {
-            $table->dateTime('tanggal')->nullable()->after('user_id');
+        Schema::create('pretty_casts', function (Blueprint $table) {
+            $table->id();
+            $table->string('file');
+            $table->unsignedBigInteger('user_id');
+            $table->date('tanggal')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('jsarevs', function (Blueprint $table) {
-            $table->dropColumn('tanggal');
-        });
+        Schema::dropIfExists('pretty_casts');
     }
 };
