@@ -28,6 +28,9 @@ class HomeController extends Controller
     function projects() {
         return view('home.projects');
     }
+    function products() {
+        return view('home.products');
+    }
     function contact() {
         return view('home.contact');
     }

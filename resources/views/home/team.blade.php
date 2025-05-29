@@ -26,7 +26,7 @@
         </div>
     </section>
     <h1 class="sr-only">Construction - Team</h1>
-    <section class="container pt-110">
+    <!-- <section class="container pt-110">
         <div class="row">
             <div class="col-xl-3 col-md-6 col-12">
                 <article class="brk-team-persone-circle brk-base-box-shadow text-center" data-brk-library="component__team">
@@ -411,7 +411,7 @@
                 <span class="bg"></span>
             </a>
         </div>
-    </section>
+    </section> -->
     <section class="bg-cover position-relative pt-90 pb-100 lazyload" data-bg="img/demo_construction/bgteams.png">
         <div class="brk-layer brk-bg-black position-absolute opacity-80"></div>
         <div class="container">

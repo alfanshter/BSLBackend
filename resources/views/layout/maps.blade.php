@@ -14,9 +14,9 @@
         </div>
     </div>
     <div class="brk-map__section">
-        <div class="brk-map__canvas" data-address="412 Throop Ave, Brooklyn, NY 11221, USA" data-zoom="13"
+        <div class="brk-map__canvas" data-address="Jalan Raya Krukah Surabaya" data-zoom="13"
             data-type="roadmap" data-style="silver" data-lat="-7.294315" data-lng="112.757293"
-            data-info-window="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, distinctio, illum modi aspernatur fugiat iste!">
+            data-info-window="PT Bima Sakti Luhur">
         </div>
     </div>
 </div>

@@ -19,6 +19,7 @@ use App\Http\Controllers\JobRevisiController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\NpmController;
 use App\Http\Controllers\PrettyCastController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RevisiController;
 use App\Http\Controllers\ServicesController;
 
@@ -55,14 +56,19 @@ Route::get('/services-plant-demolition-relocation-&-reactivation',[ServicesContr
 Route::get('/services-plant-equipment-fabrication-&-installation',[ServicesController::class,'services5']);
 Route::get('/services-machine-maker',[ServicesController::class,'services6']);
 Route::get('/services-warehouse-&-transportation-services',[ServicesController::class,'services7']);
-Route::get('/services-warehous-solution',[ServicesController::class,'services8']);
-Route::get('/services-industrial-manipulator',[ServicesController::class,'services9']);
-Route::get('/services-industrial-steam-generator',[ServicesController::class,'services10']);
-Route::get('/services-portable-cleaning-machine',[ServicesController::class,'services11']);
-Route::get('/services-scruber-dryers-machine',[ServicesController::class,'services12']);
-Route::get('/services-packaging',[ServicesController::class,'services13']);
-Route::get('/services-welding',[ServicesController::class,'services14']);
-Route::get('/services-industrial-door',[ServicesController::class,'services15']);
+
+Route::get('/products',[HomeController::class, 'products']);
+
+Route::get('/products-demo',[ProductsController::class, 'demo']);
+
+Route::get('/products-warehouse-solution',[ProductsController::class,'products1']);
+Route::get('/products-industrial-manipulator',[ProductsController::class,'products2']);
+Route::get('/products-industrial-steam-generator',[ProductsController::class,'products3']);
+Route::get('/products-portable-cleaning-machine',[ProductsController::class,'products4']);
+Route::get('/products-scruber-dryers-machine',[ProductsController::class,'products5']);
+Route::get('/products-packaging',[ProductsController::class,'products6']);
+Route::get('/products-welding',[ProductsController::class,'products7']);
+Route::get('/products-industrial-door',[ProductsController::class,'products8']);
 
 Route::get('/news', [HomeController::class, 'news']);
 Route::get('/contact', [HomeController::class, 'contact']);

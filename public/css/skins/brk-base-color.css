@@ -508,6 +508,16 @@
     );
 }
 
+.brk-base-bg-gradient-bsl {
+    background-image: linear-gradient(
+        100deg,
+        rgba(37, 126, 72, 0.92),  /* #257e48 */
+        rgba(6, 47, 129, 0.92)    /* #062f81 */
+    );
+}
+
+
+
 .brk-base-bg-gradient-0deg {
     background-image: linear-gradient(
         0deg,

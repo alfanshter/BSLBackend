@@ -27,7 +27,7 @@
     </section>
 
     <section class="container pt-5">
-        <h4 class="font__size-22 font__family-montserrat">
+        <h4 class="font__size-22 font__family-montserrat fade-in">
             <span class="brk-color-font-service-hal font__weight-semibold line__height-30">BSL can support Warehouse and
                 transportation services are crucial components of logistics and supply chain management for increased
                 efficiency, cost reduction, improved customer service, increased supply chain visibility, scalability,
@@ -41,37 +41,48 @@
             <div class="col-12 col-md-6 order-1">
                 <section>
                     <h4 class="font__size-23 font__family-montserrat pt-3">
-                        <span class="brk-color-base-dark font__weight-semibold line__height-30">
+                        <span class="brk-color-base-dark font__weight-semibold line__height-30" data-aos="fade-down"
+                        data-aos-easing="ease-in" data-aos-duration="500">
                             Kapabilitas :</span>
                     </h4>
                     <div class="pt-3">
                         <ul class="list-unstyled">
-                            <li class="mb-3 text-break font-weight-bold">1. Storage</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp;Secure, Climate-Controlled Facilities <br> &nbsp;
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">1. Storage</li>
+                            <li class="mb-3 text-break" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">&nbsp; &nbsp;Secure, Climate-Controlled Facilities <br> &nbsp;
                                 &nbsp; For Inventory Storage. </li>
-                            <li class="mb-3 text-break font-weight-bold">2. Inventory Management</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp; Tracking, Monitoring, And Reporting <br> &nbsp; &nbsp;
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">2. Inventory Management</li>
+                            <li class="mb-3 text-break" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">&nbsp; &nbsp; Tracking, Monitoring, And Reporting <br> &nbsp; &nbsp;
                                 Inventory Levels. </li>
-                            <li class="mb-3 text-break font-weight-bold">3. Order Fulfillment</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp; Picking, Packing And Shipping Orders. </li>
-                            <li class="mb-3 text-break font-weight-bold">4. Cross-Docking</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp; Transferring Goods From Incoming <br> &nbsp; &nbsp; To
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">3. Order Fulfillment</li>
+                            <li class="mb-3 text-break" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">&nbsp; &nbsp; Picking, Packing And Shipping Orders. </li>
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">4. Cross-Docking</li>
+                            <li class="mb-3 text-break" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">&nbsp; &nbsp; Transferring Goods From Incoming <br> &nbsp; &nbsp; To
                                 Outgoing Transportation.</li>
-                            <li class="mb-3 text-break font-weight-bold">5. Value-Add Services</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp; Labeling, Re-Packaging, Assembly, And Kitting. </li>
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">5. Value-Add Services</li>
+                            <li class="mb-3 text-break" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">&nbsp; &nbsp; Labeling, Re-Packaging, Assembly, And Kitting. </li>
                         </ul>
                         <div>
                             <!-- Judul di Tengah Atas -->
-                            <p class="font__size-18 font__family-montserrat text-center pt-3 pb-3 font-weight-bold">
+                            <p class="font__size-18 font__family-montserrat text-center pt-3 pb-3 font-weight-bold" data-aos="fade-down" data-aos-easing="ease-in" data-aos-duration="500">
                                 <span class="brk-color-font-service-hal font__weight-semibold line__height-30">
                                     Transportation Services Capabilities
                                 </span>
                             </p>
 
-                            <span class="font__size-15 font__family-montserrat bungkus d-inline-block mb-2">
+                            <span class="font__size-15 font__family-montserrat bungkus d-inline-block mb-2" data-aos="fade-down" data-aos-easing="ease-in" data-aos-duration="500">
                                 Full Truck (TL): Fully Loaded Truck
                             </span>
-                            <span class="font__size-15 font__family-montserrat bungkus d-inline-block">
+                            <span class="font__size-15 font__family-montserrat bungkus d-inline-block" data-aos="fade-down" data-aos-easing="ease-in" data-aos-duration="500">
                                 Less Than Truckload (LTL): Smaller Shipment Combined With Other Loads.
                             </span>
                         </div>
@@ -86,14 +97,14 @@
                         <div class="row">
                             <div class="col-12 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal6img.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </div>
                         </div>
                         <!-- Gambar 2 (Bawah) -->
                         <div class="row">
                             <div class="col-12 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal6img2.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </div>
                         </div>
                     </div>
@@ -109,7 +120,9 @@
                 </h4>
                 <div class="table-responsive">
                     <table class="table table-bordered">
-                        <thead style="position: sticky; top: 0; z-index: 1; background-color: darkblue; color: white;">
+                        <thead style="position: sticky; top: 0; z-index: 1; background-color: darkblue; color: white;" data-aos="fade-down"
+                        
+                        >
                             <tr>
                                 <th>NO</th>
                                 <th>PROJECT</th>
@@ -118,45 +131,45 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>1</td>
                                 <td class="text-break">Horizontal Packaging Machine</td>
                                 <td class="text-break">PT.Farmasi Sido Muncul</td>
                                 <td>(2008)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>2</td>
                                 <td class="text-break">Horizontal Packaging Machine</td>
                                 <td class="text-break">PT.Bintang Dunia Wallet</td>
                                 <td>(2008)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>3</td>
                                 <td class="text-break">Packaging Machine F051P</td>
                                 <td class="text-break">PT.Rajawali Nusantara Indo</td>
                                 <td>(2012)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>4</td>
                                 <td class="text-break">Cup Sealer Machine 4x2 Line</td>
                                 <td class="text-break">PDAM Jember</td>
                                 <td>(2012)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>5</td>
                                 <td class="text-break">Vertical Packaging Machine Modif Single Augher & Wigher</td>
                                 <td class="text-break">PT. Saritama Food Processing</td>
                                 <td>(2012)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>6</td>
                                 <td class="text-break">Inline Filling</td>
                                 <td class="text-break">PT.Cheil Jedang</td>
                                 <td>(2024)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>7</td>
-                                <td class="text-break">1 Line (Auger Filler, Belt Feeding Semi Automatic Conveyor, Screw
+                                <td class="text-break">1 Line (Auger Filler, Belt Feeding Semi <br> Automatic Conveyor, Screw
                                     Conveyor)</td>
                                 <td class="text-break">PT.Seelindo Sejahteratama </td>
                                 <td>(2024)</td>

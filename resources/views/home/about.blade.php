@@ -85,13 +85,13 @@
                 </div>
                 <div class="col-lg-5 offset-lg-1">
                     <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-src="img/demo_construction/470x620_1.png" alt="alt" class="img-fluid mb-30 lazyload">
+                        data-src="{{asset('img/about/470x620_1.jpg')}}" alt="alt" class="img-fluid mb-30 lazyload">
                 </div>
             </div>
         </section>
         <section>
             <div class="bg-cover bg-norepeat bg-position_center bg-white bg-shaded bg-shaded_dark lazyload pt-70 pb-70"
-                data-bg="img/demo_construction/bgchart.png">
+                data-bg="{{asset('img/about/bgchart.png')}}">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
@@ -158,7 +158,7 @@
                 </div>
             </div>
         </section>
-        <section class="brk-bg-light-dark-2 pt-50 pb-80">
+        <!-- <section class="brk-bg-light-dark-2 pt-50 pb-80">
             <div class="container mb-60">
                 <div class="row align-items-center">
                     <div class="col-xl-3">
@@ -391,7 +391,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <section class="container pt-70 pb-80 text-center text-xl-left">
             <div class="row">
                 <div class="col-xl-3">
@@ -408,8 +408,8 @@
                     <a href="/partners"
                         class="btn btn-inside-out btn-md btn-icon-abs border-radius-25 font__family-open-sans font__weight-bold m-0"
                         data-brk-library="component__button">
-                        <span class="before">View team page</span><span class="text">Open team page</span><span
-                            class="after">View team page</span>
+                        <span class="before">View partner page</span><span class="text">Open partner page</span><span
+                            class="after">View partner page</span>
                     </a>
                 </div>
                 <div class="col-xl-9">

@@ -27,7 +27,7 @@
     </section>
 
     <section class="container pt-5">
-        <h4 class="font__size-22 font__family-montserrat">
+        <h4 class="font__size-22 font__family-montserrat fade-in">
             <span class="brk-color-font-service-hal font__weight-semibold line__height-30">BSL can support factory owners in
                 making packaging machines with modern systems and low maintenance
                 costs that can be used for the implementation of powders, liquids, and pastes.</span>
@@ -35,20 +35,22 @@
     </section>
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <!-- Kolom List (Akan di atas di mobile) -->
             <div class="col-12 col-md-6 order-md-2 order-1">
                 <section>
-                    <h4 class="font__size-23 font__family-montserrat pt-3">
+                    <h4 class="font__size-23 font__family-montserrat pt-3 fade-in">
                         <span class="brk-color-base-dark font__weight-semibold line__height-30">
                             Machine Maker Capabillities :</span>
                     </h4>
                     <div class="pt-3">
                         <ul class="list-unstyled">
-                            <li class="font__size-18 font__weight-bold mb-3">
+                            <li class="font__size-18 font__weight-bold mb-3" data-aos="fade-down" data-aos-easing="ease-in"
+                            data-aos-duration="500">
                                 1. Vertical Machine
                             </li>
-                            <li class="font__size-18 font__weight-bold mb-3">
+                            <li class="font__size-18 font__weight-bold mb-3" data-aos="fade-down" data-aos-easing="ease-in"
+                            data-aos-duration="500">
                                 2. Horizontal Machine
                             </li>
                         </ul>
@@ -59,13 +61,13 @@
             <!-- Kolom Tabel -->
             <div class="col-12 col-md-6 order-md-3 order-2">
                 <h4 class="font__size-23 font__family-montserrat pt-3 pb-3">
-                    <span class="brk-color-base-dark font__weight-semibold line__height-30">
+                    <span class="brk-color-base-dark font__weight-semibold line__height-30" data-aos="fade-right">
                         EXPERIENCE :
                     </span>
                 </h4>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead style="position: sticky; top: 0; z-index: 1; background-color: darkblue; color: white;">
+                    <table class="table">
+                        <thead style="position: sticky; top: 0; z-index: 1; background-color: darkblue; color: white;" class="fade-in">
                             <tr>
                                 <th>NO</th>
                                 <th>PROJECT</th>
@@ -74,13 +76,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>1</td>
                                 <td>Repacking Jumbo Bag To Sack Bag & Tote Bin IBC To Drum</td>
                                 <td>PT.Ashland Asia - PT.Hercules Chemical Indonesia</td>
                                 <td>(2010-2011)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>2</td>
                                 <td>Repacking Jumbo Bag To Sack Bag</td>
                                 <td>PT.Trouw Nutrition Indonesia</td>
@@ -95,10 +97,12 @@
             <div class="col-12 order-3 mt-4">
                 <div class="row">
                     <div class="col-12 col-sm-6 mb-3">
-                        <img src="{{ asset('img/demo_construction/services/hal7img.png') }}" alt="alt" class="img-fluid">
+                        <img src="{{ asset('img/demo_construction/services/hal7img.png') }}" alt="alt"
+                            class="img-fluid" data-aos="zoom-in" data-aos-duration="800">
                     </div>
                     <div class="col-12 col-sm-6 mb-3">
-                        <img src="{{ asset('img/demo_construction/services/hal7img2.png') }}" alt="alt" class="img-fluid">
+                        <img src="{{ asset('img/demo_construction/services/hal7img2.png') }}" alt="alt"
+                            class="img-fluid" data-aos="zoom-in" data-aos-duration="800">
                     </div>
                 </div>
             </div>

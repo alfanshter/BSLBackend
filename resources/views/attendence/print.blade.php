@@ -85,7 +85,7 @@
         <thead>
             <tr>
                 <th class="th-header" colspan="8">
-                    <img src="{{public_path('storage/foto/header.png')}}" alt="Image" style="width: 100%;">
+                    <img src="{{ public_path('storage/foto/header.png') }}" alt="Image" style="width: 100%;">
 
                 </th>
             </tr>
@@ -101,12 +101,15 @@
                 <td colspan="8" style="background-color: #FFFFFF;padding-top: 20px;border-color:#fff"></td>
             </tr>
             <tr style="background-color: #FFFFFF;">
-                @if($starts_at!=null && $ends_at!=null )
-                <td colspan="8" style="border-left-color: #FFFFFF;border-right-color:#FFFFFF;border-bottom-color: #FFFFFF"> Date : {{$starts_at}} to {{$ends_at}}</td>
+                @if ($starts_at != null && $ends_at != null)
+                    <td colspan="8"
+                        style="border-left-color: #FFFFFF;border-right-color:#FFFFFF;border-bottom-color: #FFFFFF"> Date
+                        : {{ $starts_at }} to {{ $ends_at }}</td>
                 @endif
             </tr>
             <tr style="background-color: #FFFFFF;">
-                <td colspan="8" style="border-left-color: #FFFFFF;border-right-color:#FFFFFF;padding-bottom:20px"> Overtime : {{$overtime}} Hour </td>
+                <td colspan="8" style="border-left-color: #FFFFFF;border-right-color:#FFFFFF;padding-bottom:20px">
+                    Overtime : {{ $overtime }} Hour </td>
 
             </tr>
             <tr>
@@ -117,34 +120,49 @@
                 <th class="tg-pht7">Picture In</th>
                 <th class="tg-pht7">Check Out</th>
                 <th class="tg-pht7">Picture Out</th>
+                <th class="tg-pht7">Address</th>
                 <th class="tg-pht7">Overtime</th>
             </tr>
-            @foreach($attendence as $data)
-            <tr>
-                <td class="tg-0pky">{{$loop->iteration}}</td>
-                <td class="tg-pht7">{{$data->nama_grup}}</td>
-                <td class="tg-pht7">{{$data->date}}</td>
-                <td class="tg-pht7">{{$data->check_in}}</td>
-                <td class="tg-pht7">
-                    @if($data->picture_in !=null)
-                    <img style="width: 100px; height:100px" src="{{public_path('storage/'.$data->picture_in)}}" alt="" srcset="">
+            @foreach ($attendence as $data)
+                <tr>
+                    <td class="tg-0pky">{{ $loop->iteration }}</td>
+                    <td class="tg-pht7">{{ $data->nama_grup }}</td>
+                    <td class="tg-pht7">{{ $data->date }}</td>
+                    <td class="tg-pht7">{{ $data->check_in }}</td>
+                    <td class="tg-pht7">
+                        @if ($data->picture_in != null)
+                            <img style="width: 100px; height:100px"
+                                src="{{ public_path('storage/' . $data->picture_in) }}" alt="" srcset="">
+                        @endif
+                    </td>
+                    <td class="tg-pht7">{{ $data->check_out }}</td>
+                    <td class="tg-pht7">
+                        @if ($data->picture_in != null)
+                            <img style="width: 100px; height:100px"
+                                src="{{ public_path('storage/' . $data->picture_out) }}" alt="" srcset="">
+                        @endif
+                    </td>
+                    <td class="tg-pht7">
+                        <ul style="list-style-type: none; padding: 0; margin: 0;">
+                            @if ($data->address_in)
+                                <li>{{ $data->address_in }}</li>
+                            @endif
+                            @if ($data->address_out)
+                                <li>{{ $data->address_out }}</li>
+                            @endif
+                            @if (!$data->address_in && !$data->address_out)
+                                <li>-</li>
+                            @endif
+                        </ul>
+                    </td>
+                    @if ($data->overtime)
+                        <td class="tg-pht7">{{ $data->overtime }} Hours</td>
+                    @else
+                        <td class="tg-pht7">
+                            <center>-</center>
+                        </td>
                     @endif
-                </td>
-                <td class="tg-pht7">{{$data->check_out}}</td>
-                <td class="tg-pht7">
-                    @if($data->picture_in !=null)
-
-                    <img style="width: 100px; height:100px" src="{{public_path('storage/'.$data->picture_out)}}" alt="" srcset="">
-                    @endif
-                </td>
-                @if($data->overtime)
-                <td class="tg-pht7">{{$data->overtime}} Hours</td>
-                @else
-                <td class="tg-pht7">
-                    <center>-</center>
-                </td>
-                @endif
-            </tr>
+                </tr>
             @endforeach
         </tbody>
     </table>

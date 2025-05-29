@@ -253,71 +253,36 @@ class AttendenceController extends Controller
     {
         $name = 'attendence' . date('Ymd') . '.pdf';
         $overtime = 0;
-        if ($request->starts_at != null && $request->ends_at != null && $request->grup_id != null) {
 
-            $report = Report::with('user:id,name,email')
-                ->where('id_user', $request->id_user)
-                ->whereBetween('date', [$request->starts_at, $request->ends_at])
-                ->orderBy('date', 'desc')
-                ->paginate(10);
+        // Query dasar
+        $query = Report::with('user:id,name,email');
 
-            $overtime = Report::where('id_user', $request->id_user)
-                ->whereBetween('date', [$request->starts_at, $request->ends_at])
-                ->sum('overtime');
-
-            $pdf = Pdf::loadview('attendence.print', [
-                'attendence' => $report,
-                'starts_at' => $request->starts_at,
-                'ends_at' => $request->ends_at,
-                'overtime' => $overtime,
-            ]);
-            $pdf->setPaper('A4', 'potrait');
-            // return $pdf->download($name);
-            return $pdf->stream();
-        } else if ($request->starts_at != null && $request->ends_at != null) {
-
-            $report = Report::with('user:id,name,email')
-                ->where('id_user', $request->id_user)
-                ->whereBetween('date', [$request->starts_at, $request->ends_at])
-                ->orderBy('date', 'desc')
-                ->paginate(10);
-
-            $overtime = Report::where('id_user', $request->id_user)
-                ->whereBetween('date', [$request->starts_at, $request->ends_at])
-                ->sum('overtime');
-
-
-            $pdf = Pdf::loadview('attendence.print', [
-                'attendence' => $report,
-                'starts_at' => $request->starts_at,
-                'ends_at' => $request->ends_at,
-                'overtime' => $overtime
-            ]);
-            $pdf->setPaper('A4', 'potrait');
-            // return $pdf->download($name);
-            return $pdf->stream();
-        } else {
-
-
-            $report = Report::with('user:id,name,email')
-                ->where('id_user', $request->id_user)
-                ->orderBy('date', 'desc')
-                ->paginate(10);
-
-            $overtime = Report::where('id_user', $request->id_user)
-                ->sum('overtime');
-
-            $pdf = Pdf::loadview('attendence.print', [
-                'attendence' => $report,
-                'starts_at' => null,
-                'ends_at' => null,
-                'overtime' => $overtime
-
-            ]);
-            $pdf->setPaper('A4', 'potrait');
-            // return $pdf->download($name);
-            return $pdf->stream();
+        // Filter berdasarkan id_user jika ada
+        if ($request->id_user) {
+            $query->where('id_user', $request->id_user);
         }
+
+        // Filter berdasarkan tanggal jika ada
+        if ($request->starts_at && $request->ends_at) {
+            $query->whereBetween('date', [$request->starts_at, $request->ends_at]);
+        }
+
+        // Ambil data
+        $report = $query->orderBy('date', 'desc')->get();
+
+        // Hitung overtime
+        $overtime = $query->sum('overtime');
+
+        // Load view PDF dengan data
+        $pdf = Pdf::loadview('attendence.print', [
+            'attendence' => $report,
+            'starts_at' => $request->starts_at,
+            'ends_at' => $request->ends_at,
+            'overtime' => $overtime,
+        ]);
+
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->stream();
     }
 
     public function export(Request $request)

@@ -344,6 +344,7 @@ class JobController extends Controller
     public function export($id)
     {
         $job = JobSafetyAnalysis::find($id);
+        dd($job);
         $aar = AarJobSafety::where('kode', $job->kode)->get();
         $paper = array(0, 0, 794, 1247);
 

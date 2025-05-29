@@ -27,11 +27,12 @@
     </section>
 
     <section class="container pt-5">
-        <h4 class="font__size-22 font__family-montserrat">
-            <span class="brk-color-font-service-hal font__weight-semibold line__height-30">BSL dapat membantu pemilik pabrik
-                untuk mengoptimalkan kinerja kapasitas pabrik, <br> Memperbaiki
-                debottlenecking, memecahkan masalah pabrik dan membuat pabrik anda lebih <br> Efisien serta ramah
-                lingkungan</span>
+        <h4 class="font__size-22 font__family-montserrat fade-in">
+            <span class="brk-color-font-service-hal font__weight-semibold line__height-30">
+                BSL dapat membantu pemilik pabrik untuk mengoptimalkan kinerja kapasitas pabrik, Memperbaiki
+                debottlenecking, memecahkan masalah pabrik dan membuat pabrik anda lebih efisien serta ramah
+                lingkungan
+            </span>
         </h4>
     </section>
 
@@ -41,24 +42,39 @@
             <div class="col-12 col-md-6 order-1">
                 <section>
                     <h4 class="font__size-23 font__family-montserrat pt-3">
-                        <span class="brk-color-base-dark font__weight-semibold line__height-30">
+                        <span class="brk-color-base-dark font__weight-semibold line__height-30" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">
                             Kapabilitas :</span>
                     </h4>
                     <div class="pt-3">
                         <ul class="list-unstyled">
-                            <li class="mb-2 text-break">1. Studi Kemampuan Dari Konseptual Desain</li>
-                            <li class="mb-2 text-break">2. Pengembangan Desain Dari Detail Rekayasa</li>
-                            <li class="mb-2 text-break">3. Pengembangan Modifikasi Paket Peralatan</li>
-                            <li class="mb-2 text-break">4. Pekerjaan Di Tempat Saat / Modifikasi Installasi</li>
-                            <li class="mb-2 text-break">5. Bantuan Engineering Di Kantor Pada Saat Perubahan Di Lapangan 11</li>
-                            <li class="mb-2 text-break">6. Modernisasi Pabrik</li>
-                            <li class="mb-2 text-break">7. Menerapkan Teknologi Digital Untuk Menggantikan Sistem Kontrol <br>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">1. Studi Kemampuan Dari Konseptual Desain</li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">2. Pengembangan Desain Dari Detail Rekayasa</li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">3. Pengembangan Modifikasi Paket Peralatan</li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">4. Pekerjaan Di Tempat Saat / Modifikasi Installasi</li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">5. Bantuan Engineering Di Kantor Pada Saat Perubahan Di Lapangan 11
+                            </li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">6. Modernisasi Pabrik</li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">7. Menerapkan Teknologi Digital Untuk Menggantikan Sistem Kontrol
+                                <br>
                                 Sementara Untuk Keamanan, Ketersediaan, Kinerja Pabrik Agar <br>
-                                Investasi Dapat Kembali </li>
-                            <li class="mb-2 text-break">8. Perhitungan Finite Element</li>
-                            <li class="mb-2 text-break">9. Perhitungan Keseimbangan Sistem Proses </li>
-                            <li class="mb-2 text-break">10. Simulisasi Alur Finite Element</li>
-                            <li class="mb-2 text-break">11. Kalkulasi Keadaan Pipa</li>
+                                Investasi Dapat Kembali
+                            </li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">8. Perhitungan Finite Element</li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">9. Perhitungan Keseimbangan Sistem Proses </li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">10. Simulisasi Alur Finite Element</li>
+                            <li class="mb-2 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">11. Kalkulasi Keadaan Pipa</li>
                         </ul>
                     </div>
                 </section>
@@ -71,19 +87,19 @@
                         <div class="row">
                             <a href="#" class="col-6 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal1img.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in"  data-aos-duration="800">
                             </a>
                             <a href="#" class="col-6 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal1img2.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </a>
                             <a href="#" class="col-6 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal1img3.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </a>
                             <a href="#" class="col-6 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal1img4.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </a>
                         </div>
                     </div>
@@ -93,13 +109,14 @@
             <!-- Kolom Tabel -->
             <div class="col-12 order-3">
                 <h4 class="font__size-23 font__family-montserrat pt-3 pb-3">
-                    <span class="brk-color-base-dark font__weight-semibold line__height-30">
+                    <span class="brk-color-base-dark font__weight-semibold line__height-30" data-aos="fade-right">
                         EXPERIENCE :
                     </span>
                 </h4>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead style="position: sticky; top: 0; z-index: 1; background-color: darkblue; color: white;">
+                    <table class="table">
+                        <thead style="position: sticky; top: 0; z-index: 1; background-color: darkblue; color: white;"
+                            data-aos="fade-down">
                             <tr>
                                 <th>NO</th>
                                 <th>PROJECT</th>
@@ -108,49 +125,49 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>1</td>
                                 <td class="text-break">Modification Coil Condensate & Insulation</td>
                                 <td class="text-break">PT. Hercules Mas Indonesia Pandaan</td>
                                 <td>(1998)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>2</td>
                                 <td class="text-break">Rosin & Addyct Storage Tank 1⁄4 MT</td>
                                 <td class="text-break">PT. Hercules Mas Indonesia Pekanbaru</td>
                                 <td>(2004)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>3</td>
                                 <td class="text-break">Modification line Buffer Tank to Storage Use PE Pipeline</td>
                                 <td class="text-break">PT.SOLENIS TECHNOLOGIES INDONESIA Karawang</td>
                                 <td>(2018)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>4</td>
                                 <td class="text-break">Modification Hopper in Reactor base input</td>
                                 <td class="text-break">PT.SOLENIS TECHNOLOGIES IN Karawang</td>
                                 <td>(2018)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>5</td>
                                 <td class="text-break">Reengineering Hydrant Truck After Crack Body</td>
                                 <td class="text-break">Dinas Pemadam Kebakaran Pemkot Surabaya</td>
                                 <td>(2018)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>6</td>
                                 <td class="text-break">Custom Line AHP (Hoist Crane,Platform,Etc)</td>
                                 <td class="text-break">PT.TROUW NUTRITION INDO Malang</td>
                                 <td>(2021)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>7</td>
                                 <td class="text-break">Modification Dust Collector Portable</td>
                                 <td class="text-break">PT.TROUW NUTRITION INDO Malang</td>
                                 <td>(2023)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>8</td>
                                 <td class="text-break">Modification Line Softwarer</td>
                                 <td class="text-break">PT.ADM ANIMAL NUTRITION Clbitung</td>

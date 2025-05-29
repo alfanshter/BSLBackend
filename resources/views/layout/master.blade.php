@@ -2,15 +2,21 @@
 <html lang="en" data-brk-skin="brk-yellow.css">
 
 <head>
-    <title>PT.BIMA SAKTI LUHUR</title>
+    <title>PT. BIMA SAKTI LUHUR - Engineering, Maintenance & Industrial Solutions</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ asset('favicon.ico') }}" />
     <meta name="theme-color" content="#2775FF" />
-    <meta name="keywords" content="themeforest, theme, html, template" />
-    <meta name="description" content="themeforest, theme, html, template" />
+    <meta name="keywords" content="Reengineering, Maintenance, Repair, Overhaul, Warehouse, Transportation, Relocation, Fabrication, Installation, Demolition" />
+    <meta name="description" content="PT. BIMA SAKTI LUHUR specializes in Reengineering, Maintenance, Relocation, Repair, Fabrication, Warehouse & Transportation Services." />
+    <meta property="og:title" content="PT. BIMA SAKTI LUHUR - Engineering, Maintenance & Industrial Solutions" />
+    <meta property="og:description" content="We provide Reengineering, Maintenance, Repair, Fabrication, Warehouse & Transportation Services for your industrial needs." />
+    <meta property="og:image" content="{{ asset('favicon.ico') }}" />
+    <meta property="og:url" content="https://www.bimasaktiluhur.com" />
+    <meta property="og:type" content="website" />
+
     <link rel="stylesheet" id="brk-direction-bootstrap" href="{{ asset('css/assets/bootstrap.css') }}" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" />
@@ -20,9 +26,48 @@
     <link rel="stylesheet" id="brk-direction-offsets" href="{{ asset('css/assets/offsets.css') }}" />
     <link id="brk-css-min" rel="stylesheet" href="{{ asset('css/assets/styles.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor/revslider/css/settings.css') }}" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" />
+    
 
-    <link rel="stylesheet" href="{{ asset('css/popup.css') }}">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "PT. BIMA SAKTI LUHUR",
+            "url": "{{ url('/') }}",
+            "logo": "{{ asset('assets/logo.jpg') }}",
+            "description": "We provide Reengineering, Maintenance, Repair, Fabrication, Warehouse & Transportation Services.",
+            "address": [{
+                    "@type": "PostalAddress",
+                    "streetAddress": "Krukah Timur Street. I No.3, Baratajaya, Kec. Gubeng",
+                    "addressLocality": "Surabaya",
+                    "addressRegion": "East Java",
+                    "postalCode": "60284",
+                    "addressCountry": "ID"
+                },
+                {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Jl. Nangka, Pergudangan Tanrise Southgate Blok A No. 18, Dusun Sruni",
+                    "addressLocality": "Sruni",
+                    "addressRegion": "East Java",
+                    "addressCountry": "ID"
+                }
+            ],
+            "contactPoint": [{
+                    "@type": "ContactPoint",
+                    "email": "sales@bimasaktiluhur.com",
+                    "contactType": "sales"
+                },
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "+62 812-3456-7890",
+                    "contactType": "customer service"
+                }
+            ]
+        }
+    </script>
+
     <style>
         .hebe.tp-bullets:before {
             content: " ";
@@ -147,26 +192,60 @@
             overflow-y: visible;
             /* Memastikan overflow vertikal tidak diatur */
         }
+
         .text-overlay {
             position: absolute;
-            bottom: 20px; /* Posisi teks sedikit di atas bagian bawah */
-            left: 12px; /* Posisi teks dari kiri */
-            color: white; /* Warna teks */
-            text-align: left; /* Rata kiri */
+            bottom: 20px;
+            /* Posisi teks sedikit di atas bagian bawah */
+            left: 12px;
+            /* Posisi teks dari kiri */
+            color: white;
+            /* Warna teks */
+            text-align: left;
+            /* Rata kiri */
+        }
+
+        .text-on-image {
+            position: absolute;
+            /* Posisi teks sedikit di atas bagian bawah */
+            left: 12px;
+            /* Posisi teks dari kiri */
+            color: white;
+            /* Warna teks */
+            text-align: left;
+            /* Rata kiri */
+        }
+
+        .image-caption {
+            position: absolute;
+            left: 20px;
+            text-align: left;
+            /* Memastikan teks tidak melebihi lebar gambar */
+        }
+
+        @media (max-width: 767.98px) {
+            .image-caption {
+                left: 10px;
+                /* Sesuaikan untuk layar HP */
+            }
         }
 
         h1 {
-            font-size: 1.1rem; /* Ukuran font untuk h1 */
+            font-size: 1.1rem;
+            /* Ukuran font untuk h1 */
             font-weight: bold;
             margin: 0;
-            color: white;/* Hilangkan margin default */
+            color: white;
+            /* Hilangkan margin default */
         }
 
         h2 {
-            font-size: 0.9rem; /* Ukuran font untuk h2 */
+            font-size: 0.9rem;
+            /* Ukuran font untuk h2 */
             font-weight: 400;
             margin: 5px 0 0 0;
-            color: white; /* Hilangkan margin default */
+            color: white;
+            /* Hilangkan margin default */
         }
 
         @font-face {
@@ -191,10 +270,30 @@
             /* Extra Bold */
             font-style: normal;
         }
+
+        .semiboldmontserrat {
+            font-family: 'Montserrat';
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .extraboldmontserrat {
+            font-family: 'Montserrat';
+            font-weight: 800;
+            font-style: normal;
+        }
+
+        .boldmontserrat {
+            font-family: 'Montserrat';
+            font-weight: 700;
+            font-style: normal;
+        }
+
         li {
             font-family: 'Montserrat';
             font-weight: 600;
         }
+
         .ebmont {
             font-family: 'Montserrat';
             font-weight: 800;
@@ -215,6 +314,12 @@
             font-size: 17px;
         }
 
+        .duapuluhmontserrat {
+            font-family: 'Montserrat';
+            font-size: 17px;
+            font-weight: 700;
+        }
+
         .duaempat {
             font-family: 'Montserrat';
             font-size: 24px;
@@ -223,9 +328,131 @@
         .bungkus {
             border: 1px solid black;
         }
+
+        .fade-in {
+            opacity: 0;
+            /* Awalnya tidak terlihat */
+            transform: translateY(20px);
+            /* Bergeser sedikit ke bawah */
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            /* Animasi */
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            /* Menjadi terlihat */
+            transform: translateY(0);
+            /* Posisi normal */
+        }
+
+
+        .timeline-container {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: nowrap;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 12px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .timeline-text {
+            font-size: 15px;
+            font-weight: 500;
+            word-wrap: break-word;
+            word-break: break-word;
+            white-space: normal;
+            flex: 1;
+        }
+
+        .timeline-image {
+            max-width: 700px;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-left: 40px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-container {
+                flex-direction: column;
+            }
+
+            .timeline-image {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+
+
+        .item {
+            margin-bottom: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .item img {
+            cursor: pointer;
+            width: auto;
+            height: 150px;
+            transition: transform 0.3s ease;
+        }
+
+        .item p {
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+
+
+        .item:hover {
+            transform: scale(1.05);
+        }
+
+        .item.active {
+            transform: scale(1.2);
+            z-index: 10;
+            /* Jadi item yang diperbesar berada di atas elemen lain */
+        }
+
+        #downloadPdfBtn {
+  color: white;          /* teks putih */
+  background-color: #007bff; /* biru elegan */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+#downloadPdfBtn:hover {
+  background-color: #0056b3;
+}
+
     </style>
 
+    
+
 </head>
+@extends('layout.aos')
 
 <div class="brk-loader">
     <div class="brk-loader__loader"></div>
@@ -239,13 +466,18 @@
 
 @include('layout.footbar')
 <a href="#top" id="toTop"></a>
-<script defer="defer" src="js/scripts.min.js"></script>
-<script defer="defer" src="vendor/revslider/js/jquery.themepunch.tools.min.js"></script>
-<script defer="defer" src="vendor/revslider/js/jquery.themepunch.revolution.min.js"></script>
-<script defer="defer" src="vendor/revslider/js/extensions/revolution.extension.actions.min.js"></script>
-<script defer="defer" src="vendor/revslider/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script defer="defer" src="vendor/revslider/js/extensions/revolution.extension.navigation.min.js"></script>
-<script defer="defer" src="vendor/revslider/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="{{ asset('js/aos.js') }}"></script>
+<script defer="defer" src="{{ asset('js/scripts.min.js') }}"></script>
+<script defer="defer" src="{{ asset('vendor/revslider/js/jquery.themepunch.tools.min.js') }}"></script>
+<script defer="defer" src="{{ asset('vendor/revslider/js/jquery.themepunch.revolution.min.js') }}"></script>
+<script defer="defer" src="{{ asset('vendor/revslider/js/extensions/revolution.extension.actions.min.js') }}"></script>
+<script defer="defer" src="{{ asset('vendor/revslider/js/extensions/revolution.extension.layeranimation.min.js') }}">
+</script>
+<script defer="defer" src="{{ asset('vendor/revslider/js/extensions/revolution.extension.navigation.min.js') }}">
+</script>
+<script defer="defer" src="{{ asset('vendor/revslider/js/extensions/revolution.extension.slideanims.min.js') }}">
+</script>
+<script></script>
 <script>
     var revapi23, tpj;
     (function() {
@@ -345,6 +577,20 @@
         } /* END OF ON LOAD FUNCTION */
     })();
     /* END OF WRAPPING FUNCTION */
-</script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const fadeElements = document.querySelectorAll('.fade-in');
 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible'); // Tambahkan kelas visible
+                }
+            });
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+    });
+</script>
+<!-- Script khusus dari halaman lain -->
+@stack('scripts')
 </html>

@@ -27,7 +27,7 @@
     </section>
 
     <section class="container pt-5">
-        <h4 class="font__size-22 font__family-montserrat">
+        <h4 class="font__size-22 font__family-montserrat fade-in">
             <span class="brk-color-font-service-hal font__weight-semibold line__height-30">BSL can support fabrication and
                 installation of Factory equipment refers to the process of designing,
                 building and installing factories, facilities, in order to improve factory systems</span>
@@ -40,26 +40,37 @@
             <div class="col-12 col-md-6 order-1">
                 <section>
                     <h4 class="font__size-23 font__family-montserrat pt-3">
-                        <span class="brk-color-base-dark font__weight-semibold line__height-30">
+                        <span class="brk-color-base-dark font__weight-semibold line__height-30" data-aos="fade-down"
+                            data-aos-easing="ease-in" data-aos-duration="500">
                             Kapabilitas :</span>
                     </h4>
                     <div class="pt-3">
                         <ul class="list-unstyled">
-                            <li class="mb-3 text-break font-weight-bold">1. Design And Engineering</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp;Plan, Engineering And Engineering The Plant, <br>
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">1. Design And Engineering</li>
+                            <li class="mb-3 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">&nbsp; &nbsp;Plan, Engineering And Engineering The Plant, <br>
                                 &nbsp; &nbsp; Including
                                 Layout, Piping, Electrical, And Instrumentation </li>
-                            <li class="mb-3 text-break font-weight-bold">2. Fabrication</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp; Producing Plant Components, Such a Tank, <br> &nbsp;
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">2. Fabrication</li>
+                            <li class="mb-3 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">&nbsp; &nbsp; Producing Plant Components, Such a Tank, <br> &nbsp;
                                 &nbsp; Vessels, Piping And Equipment. </li>
-                            <li class="mb-3 text-break font-weight-bold">3. Transportation</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp; Moving Fabricated Components To <br> &nbsp; &nbsp; The
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">3. Transportation</li>
+                            <li class="mb-3 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">&nbsp; &nbsp; Moving Fabricated Components To <br> &nbsp; &nbsp; The
                                 Installation Site. </li>
-                            <li class="mb-3 text-break font-weight-bold">4. Installation</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp; Assembling And Install Plant <br> &nbsp; &nbsp;
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">4. Installation</li>
+                            <li class="mb-3 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">&nbsp; &nbsp; Assembling And Install Plant <br> &nbsp; &nbsp;
                                 Components, Connecting, Piping <br> &nbsp; &nbsp; Electrical, And Instrumental.</li>
-                            <li class="mb-3 text-break font-weight-bold">5. Testing And Commissioning</li>
-                            <li class="mb-3 text-break">&nbsp; &nbsp; Verifying Plant Functionally, Safety, <br> &nbsp;
+                            <li class="mb-3 text-break font-weight-bold" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">5. Testing And Commissioning</li>
+                            <li class="mb-3 text-break" data-aos="fade-down" data-aos-easing="ease-in"
+                                data-aos-duration="500">&nbsp; &nbsp; Verifying Plant Functionally, Safety, <br> &nbsp;
                                 &nbsp; And Performance. </li>
                         </ul>
                     </div>
@@ -73,22 +84,22 @@
                         <div class="row">
                             <a href="#" class="col-6 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal5img.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </a>
                             <a href="#" class="col-6 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal5img2.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </a>
                             <a href="#" class="col-6 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal5img3.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </a>
                             <a href="#" class="col-6 justify-content-center align-items-center d-flex p-2">
                                 <img src="{{ asset('img/demo_construction/services/hal5img4.png') }}" class="img-fluid"
-                                    alt="alt">
+                                    alt="alt" data-aos="zoom-in" data-aos-duration="800">
                             </a>
                             <div class="col-6 d-flex justify-content-center align-items-center p-2">
-                                <div class="bg-light p-3 w-100">
+                                <div class="bg-light p-3 w-100" data-aos="zoom-in" data-aos-duration="800">
                                     <p class="text-center font__family-montserrat mb-2 font-weight-bold">Experience Man
                                         Power</p>
                                     <ul class="list-unstyled text-start mb-0">
@@ -98,7 +109,7 @@
                                 </div>
                             </div>
                             <div class="col-6 d-flex justify-content-center align-items-center p-2">
-                                <div class="bg-light p-3 w-100">
+                                <div class="bg-light p-3 w-100" data-aos="zoom-in" data-aos-duration="800">
                                     <p class="text-center font__family-montserrat mb-2 font-weight-bold">Experience Man
                                         Power</p>
                                     <ul class="list-unstyled text-start mb-0">
@@ -116,13 +127,13 @@
             <!-- Kolom Tabel -->
             <div class="col-12 order-3">
                 <h4 class="font__size-23 font__family-montserrat pt-3 pb-3">
-                    <span class="brk-color-base-dark font__weight-semibold line__height-30">
+                    <span class="brk-color-base-dark font__weight-semibold line__height-30" data-aos="fade-right">
                         EXPERIENCE :
                     </span>
                 </h4>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead style="position: sticky; top: 0; z-index: 1; background-color: darkblue; color: white;">
+                    <table class="table">
+                        <thead style="position: sticky; top: 0; z-index: 1; background-color: darkblue; color: white;" data-aos="fade-down">
                             <tr>
                                 <th>NO</th>
                                 <th>PROJECT</th>
@@ -131,91 +142,91 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>1</td>
                                 <td class="text-break">Coil And Piping System</td>
                                 <td class="text-break">PT.Hercules Mas Indonesia (Pandaan)</td>
                                 <td>(1998)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>2</td>
                                 <td class="text-break">Pipe Line & Insulation</td>
                                 <td class="text-break">PT.Hercules Mas Indonesia (Riau)</td>
                                 <td>(2000)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>3</td>
                                 <td class="text-break">Cane Cutter</td>
                                 <td class="text-break">PT.Perkebunan Nusantara XI (Madiun)</td>
                                 <td>(2000)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>4</td>
                                 <td class="text-break">Fire Fighting Suppression System</td>
                                 <td class="text-break">PT.Hercules Indonesia (Riau)</td>
                                 <td>(2003)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>5</td>
                                 <td class="text-break">Reengineering Hydrant Truck After Crack Body</td>
                                 <td class="text-break">Dinas Pemadam Kebakaran Pemkot Surabaya</td>
                                 <td>(2004)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>6</td>
                                 <td class="text-break">Pipe Line Air Compressor</td>
                                 <td class="text-break">PT.Otsuka Indonesia (Sukabumi)</td>
                                 <td>(2005)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>7</td>
                                 <td class="text-break">Automatic Screen Waste</td>
                                 <td class="text-break">Dinas Pengendalian Pemkot (Sby)</td>
                                 <td>(2006)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>8</td>
                                 <td class="text-break">Round Bar Hitter & Slitter Knife</td>
                                 <td class="text-break">PT.Dunia Bintang Wallet (Jakarta)</td>
                                 <td>(2012)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>9</td>
                                 <td class="text-break">Loading Dock Leveler</td>
                                 <td class="text-break">PT.Trouw Nutrition Indonesia (Pasuruan)</td>
                                 <td>(2020)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>10</td>
                                 <td class="text-break">Conical Hopper</td>
                                 <td class="text-break">PT.Trouw Nutrition Indonesia (Pasuruan)</td>
                                 <td>(2022)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>11</td>
                                 <td class="text-break">Additional Canopy Rooftop</td>
                                 <td class="text-break">PT.Trouw Nutrition Indonesia (Pasuruan)</td>
                                 <td>(2022)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>12</td>
                                 <td class="text-break">Safety Gate Barrier</td>
                                 <td class="text-break">PT.Trouw Nutrition Indonesia (Pasuruan)</td>
                                 <td>(2023)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>13</td>
                                 <td class="text-break">Screw Conveyor</td>
                                 <td class="text-break">PT.Greenfields Indonesia (Malang)</td>
                                 <td>(2023)</td>
                             </tr>
-                            <tr>
+                            <tr data-aos="fade-left">
                                 <td>14</td>
                                 <td class="text-break">PDR-F 500 KVA Stabilizer</td>
                                 <td class="text-break">PT.Trouw Nutrition Indonesia (Pasuruan)</td>
                                 <td>(2023)</td>
                             </tr>
-                            <tr class="table-active">
+                            <tr class="table-active" data-aos="fade-right">
                                 <td>15</td>
                                 <td class="text-break">Roller Conveyor Knock Down System</td>
                                 <td class="text-break">PT.BEC Premix Solutions Indonesia</td>

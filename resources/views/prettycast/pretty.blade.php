@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div class="page-header">
-        <h3 class="page-title"> Pretty Cast </h3>
+        <h3 class="page-title"> Npm </h3>
         <a href="javascript:void(0)" class="btn btn-gradient-primary btn-icon-text btn-md" onClick="add()">
             <i class="mdi mdi-plus-box btn-icon-prepend"></i> Add </a>
     </div>
@@ -22,7 +22,7 @@
                 <div class="table-responsive">
 
                     <!-- DataTable untuk menampilkan hasil -->
-                    <table class="table table-striped table-bordered" id="user-group">
+                    <table class="table table-striped table-bordered" id="pretty-group">
                         <thead>
                             <div class="row">
                                 <div class="col-2">
@@ -106,7 +106,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="pretty-group" id="pretty-group" name="pretty-group" action="javascript:void(0)" method="POST"
+                        <form class="add-group" id="add-group" name="add-group" action="javascript:void(0)" method="POST"
                             enctype="multipart/form-data">
                             <div class="form-group mb-3">
                                 <input type="hidden" name="id" id="id">
@@ -218,11 +218,11 @@
                     }
                 });
                 // Inisialisasi DataTables
-                var table = $('#user-group').DataTable({
+                var table = $('#pretty-group').DataTable({
                     processing: true,
                     serverSide: false,
                     ajax: {
-                        url: '/pretty-cast', // Endpoint untuk mengambil data awal
+                        url: '/npm-view', // Endpoint untuk mengambil data awal
                         type: 'GET',
                         dataSrc: function(json) {
                             return json.data
@@ -253,7 +253,7 @@
 
 
                 $('#refreshData').on('click', function() {
-                    $('#user-group').DataTable().ajax.reload(); // Reload data tabel
+                    $('#pretty-group').DataTable().ajax.reload(); // Reload data tabel
                 });
 
                 $('#applyFilter').on('click', function() {
@@ -262,7 +262,7 @@
 
                     // Kirim permintaan AJAX untuk filter
                     $.ajax({
-                        url: '/pretty-time', // Endpoint untuk filter
+                        url: '/npm-time', // Endpoint untuk filter
                         type: 'GET',
                         data: {
                             start_time: startTime,
@@ -305,7 +305,7 @@
 
                 // Kirim request AJAX ke server
                 $.ajax({
-                    url: '/pretty-time', // Sesuaikan dengan endpoint Anda
+                    url: '/npm-time', // Sesuaikan dengan endpoint Anda
                     method: 'GET', // Gunakan method GET atau POST, sesuaikan dengan controller
                     data: {
                         start_time: startTime,
@@ -315,7 +315,7 @@
                         console.log(response.data); // Untuk debug response
 
                         // Ambil instance DataTable
-                        const table = $('#user-group').DataTable();
+                        const table = $('#pretty-group').DataTable();
 
                         // Hapus data lama dari tabel
                         table.clear();
@@ -403,7 +403,7 @@
 
             function applyFilter(startTime, endTime) {
                 $.ajax({
-                    url: '/pretty-time',
+                    url: '/npm-time',
                     type: 'GET',
                     data: {
                         start_time: startTime,
@@ -412,7 +412,7 @@
                     success: function(response) {
                         if (response.status === 200) {
                             // Perbarui tabel dengan data yang difilter
-                            const table = $('#user-group').DataTable();
+                            const table = $('#pretty-group').DataTable();
                             table.clear().rows.add(response.data).draw();
                         } else {
                             // Tampilkan pop-up error jika data tidak ditemukan atau status bukan 200
@@ -478,7 +478,7 @@
 
                 // Kirim data menggunakan $.ajax
                 $.ajax({
-                    url: '/pretty-edit', // URL endpoint
+                    url: '/npm-edit', // URL endpoint
                     type: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF Token
@@ -498,7 +498,7 @@
                             $('#render-loader').show();
 
                             // Reload tabel dengan ajax
-                            $('#user-group').DataTable().ajax.reload(function() {
+                            $('#pretty-group').DataTable().ajax.reload(function() {
                                 // Sembunyikan loader setelah tabel selesai di-reload
                                 $('#render-loader').hide();
 
@@ -561,7 +561,7 @@
 
                 $.ajax({
                     type: "DELETE",
-                    url: "{{ url('pretty-delete') }}/" + deleteId, // Kirim ID sebagai bagian dari URL
+                    url: "{{ url('npm-delete') }}/" + deleteId, // Kirim ID sebagai bagian dari URL
                     dataType: 'json',
                     success: function(res) {
                         // Sembunyikan modal lain yang aktif
@@ -571,7 +571,7 @@
                         $('#render-loader').show();
 
                         // Reload tabel dengan ajax
-                        $('#user-group').DataTable().ajax.reload(function() {
+                        $('#pretty-group').DataTable().ajax.reload(function() {
                             // Sembunyikan loader setelah tabel selesai di-reload
                             $('#render-loader').hide();
 
@@ -591,7 +591,7 @@
                         $(".custom-modal").removeClass(
                             "active"); // Pastikan modal yang ada di halaman lain disembunyikan
 
-                        $('#user-group').DataTable().ajax.reload(); // Reload tabel
+                        $('#pretty-group').DataTable().ajax.reload(); // Reload tabel
 
                         // Mengubah teks pada elemen dengan id 'deletes-message'
                         $("#deleter-message").text(res
@@ -616,7 +616,7 @@
             });
 
             function add() {
-                $('#pretty-group').trigger("reset");
+                $('#add-group').trigger("reset");
                 $('#exampleModalLabel').html("Add Group");
                 $('#modalGroup').modal('show');
                 $('#id').val('');
@@ -626,13 +626,13 @@
                 $("#modalGroup").modal('hide');
             });
 
-            $('#pretty-group').submit(function(e) {
+            $('#add-group').submit(function(e) {
                 e.preventDefault(); // Cegah form dari submit default
                 var formData = new FormData(this);
 
                 $.ajax({
                     type: 'POST',
-                    url: "/pretty-post",
+                    url: "/npm-post",
                     data: formData,
                     cache: false,
                     contentType: false,
@@ -660,7 +660,7 @@
                             $("#success-modal").addClass("active");
 
                             // Reload tabel segera setelah pop-up muncul
-                            $('#user-group').DataTable().ajax.reload(null,
+                            $('#pretty-group').DataTable().ajax.reload(null,
                                 false); // Reload tanpa reset paging
 
                             // Sembunyikan pop-up setelah 2 detik
@@ -673,7 +673,7 @@
                             $("#error-modal").addClass("active");
 
                             // Reload tabel segera setelah pop-up muncul
-                            $('#user-group').DataTable().ajax.reload(null,
+                            $('#pretty-group').DataTable().ajax.reload(null,
                                 false); // Reload tanpa reset paging
 
                             // Sembunyikan pop-up setelah 2 detik
