@@ -442,7 +442,7 @@
                                 data-brk-library="component__widgets">
                                 <img class="logo-set__img lazyload"
                                     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                    data-src="img/pakuwon.svg" alt="alt">
+                                    data-src="img/ashland.svg" alt="alt">
                             </a></div>
                         <div class="col-xl-4 pt-15 pb-15"><a href="#" class="logo-set"
                                 data-brk-library="component__widgets">
@@ -460,7 +460,7 @@
                                 data-brk-library="component__widgets">
                                 <img class="logo-set__img lazyload"
                                     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                                    data-src="img/sidomuncul.svg" alt="alt">
+                                    data-src="img/trouw.svg" alt="alt">
                             </a></div>
                         <div class="col-xl-4 pt-15 pb-15"><a href="#" class="logo-set"
                                 data-brk-library="component__widgets">
