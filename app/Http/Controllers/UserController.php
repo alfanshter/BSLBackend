@@ -100,4 +100,9 @@ class UserController extends Controller
         $data = User::where('id', $request->input('id'))->with('grup')->first();
         return response()->json($data);
     }
+
+    function getTl(){
+        $data = User::where('role',"1")->get();
+        return response()->json($data);
+    }
 }

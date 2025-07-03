@@ -30,10 +30,12 @@ Route::post('/jsa-post', [JobRevisiController::class, 'store']);
 Route::post('/auth', [AuthController::class, 'loginApi']);
 Route::post('/create_user', [AuthController::class, 'create_user']);
 Route::get('/profilApi', [UserController::class, 'profilApi']);
+Route::get('/getTl', [UserController::class, 'getTl']);
 Route::post('/create_group', [UserGroupController::class, 'create_group']);
 Route::get('/attendence', [AttendenceController::class, 'attendenceApi']);
 Route::post('/checkin', [AttendenceController::class, 'checkin']);
 Route::post('/checkout', [AttendenceController::class, 'checkout']);
+Route::post('/overtime', [AttendenceController::class, 'overtime']);
 
 Route::get('/notifikasi', [NotifikasiController::class, 'index']);
 Route::post('/notifikasi', [NotifikasiController::class, 'store']);

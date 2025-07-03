@@ -66,6 +66,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+
         if (Auth::attempt($credentials)) {
             $user = User::where('username', $request['username'])->firstOrFail();
 

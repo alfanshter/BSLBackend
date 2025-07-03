@@ -90,156 +90,145 @@ class AttendenceController extends Controller
 
     public function checkin(Request $request)
     {
-        // Cek absen apakah sudah ada
-        $cekabsen = Report::where('id_user', $request->id_user)
-            ->where('date', date('Y-m-d', time()))
-            ->first();
-        if ($cekabsen != null) {
-            $response = [
-                'message' => 'Anda sudah melakukan check-in hari ini.',
-                'sukses' => 0,
-                'data' => null
-            ];
-            return response()->json($response, Response::HTTP_CREATED);
-        }
-
-        // Validasi input
         $validator = Validator::make($request->all(), [
             'id_user' => 'required',
-            'address_in' => 'nullable|string', // Alamat check-in
-            'picture_in' => 'nullable|image|mimes:jpg,png,jpeg|max:5120', // Validasi format dan ukuran file
+            'address_in' => 'required',
+            'picture_in' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'latitude_in' => 'nullable|numeric',
+            'longitude_in' => 'nullable|numeric',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $data = $request->all();
+        // Cek apakah user sudah check-in hari ini
+        $existing = Report::where('id_user', $request->id_user)
+            ->where('date', date('Y-m-d'))
+            ->first();
 
-        // Proses upload dan kompresi gambar
-        if ($request->file('picture_in')) {
+        if ($existing) {
+            return response()->json([
+                'message' => 'Anda sudah melakukan check-in hari ini.',
+                'sukses' => 0,
+                'data' => null
+            ], Response::HTTP_CREATED);
+        }
+
+        // Handle picture_in
+        $fotoName = null;
+        if ($request->hasFile('picture_in')) {
             $foto = $request->file('picture_in');
+            $fotoName = time() . '.' . $foto->getClientOriginalExtension();
 
-            // Ambil nama asli file
-            $originalName = $foto->getClientOriginalName(); // Nama file dengan ekstensi
-
-            // Proses kompresi gambar
             $img = Image::make($foto->path());
             $img->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
 
-            // Simpan gambar ke folder public/storage/foto
-            $destinationPath = public_path('/storage/foto/' . $originalName);
+            $destinationPath = public_path('/storage/foto/' . $fotoName);
             $img->save($destinationPath);
-
-            // Simpan path gambar ke database
-            $data['picture_in'] = 'foto/' . $originalName;
         }
 
-        // Set waktu dan tanggal
+        // Proses check-in
         date_default_timezone_set('Asia/Jakarta');
-        $data['date'] = date('Y-m-d', time());
-        $data['check_in'] = date('Y-m-d H:i:s', time());
 
-        // Simpan data ke database
-        $user = Report::create($data);
-
-        $response = [
-            'message' => 'Check-in berhasil.',
-            'sukses' => 1,
-            'data' => $data
+        $data = [
+            'id_user' => $request->id_user,
+            'check_in' => date('Y-m-d H:i:s'),
+            'date' => date('Y-m-d'),
+            'picture_in' => $fotoName ? 'foto/' . $fotoName : null,
+            'latitude_in' => $request->latitude_in,
+            'longitude_in' => $request->longitude_in,
+            'address_in' => $request->address_in,
         ];
 
-        return response()->json($response, Response::HTTP_CREATED);
+        $report = Report::create($data);
+
+        return response()->json([
+            'message' => 'Check-in berhasil.',
+            'sukses' => 1,
+            'data' => $report
+        ], Response::HTTP_CREATED);
     }
 
     public function checkout(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'id_user' => 'required',
-            'address_out' => 'nullable|string', // Alamat check-out
-            'picture_out' => 'nullable|image|mimes:jpg,png,jpeg|max:2048', // Validasi untuk gambar check-out
-            'overtime' => 'nullable|numeric', // Validasi overtime
+            'picture_out' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'latitude_out' => 'nullable|numeric',
+            'longitude_out' => 'nullable|numeric',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-
-        // Cek apakah ada data check-in hari ini
+    
         $cekabsen = Report::where('id_user', $request->id_user)
             ->where('date', date('Y-m-d', time()))
             ->first();
-
+    
         if ($cekabsen != null) {
-            // Jika sudah check-out sebelumnya
             if ($cekabsen->check_out != null) {
-                $response = [
+                return response()->json([
                     'message' => 'Anda sudah melakukan check-out hari ini.',
                     'sukses' => 2,
                     'data' => null
-                ];
-                return response()->json($response, Response::HTTP_CREATED);
+                ], Response::HTTP_CREATED);
             } else {
-                // Proses check-out
                 $data = $request->all();
-
-                // Handle overtime
+    
+                // Tambahkan data lokasi
+                $data['latitude_out'] = $request->latitude_out;
+                $data['longitude_out'] = $request->longitude_out;
+    
                 if ($request->overtime) {
-                    $data['overtime'] = (int)$request->overtime;
+                    $data['overtime'] = (int) $request->overtime;
                 }
-
-                // Handle picture_out
+    
                 if ($request->file('picture_out')) {
                     $foto = $request->file('picture_out');
-                    $fotoName = time() . '.' . $foto->getClientOriginalExtension(); // Nama file unik
-
-                    // Kompresi gambar
+                    $fotoName = time() . '.' . $foto->getClientOriginalExtension();
+    
                     $img = Image::make($foto->path());
                     $img->resize(null, 200, function ($constraint) {
                         $constraint->aspectRatio();
                         $constraint->upsize();
                     });
-
-                    // Simpan gambar ke folder public/storage/foto
+    
                     $destinationPath = public_path('/storage/foto/' . $fotoName);
                     $img->save($destinationPath);
-
-                    // Simpan path gambar ke database
+    
                     $data['picture_out'] = 'foto/' . $fotoName;
                 }
-
-                // Set waktu check-out
+    
                 date_default_timezone_set('Asia/Jakarta');
                 $data['check_out'] = date('Y-m-d H:i:s', time());
-
-                // Update data check-out ke record yang sama dengan check-in
+    
                 Report::where('id', $cekabsen->id)->update($data);
-
-                $response = [
+    
+                return response()->json([
                     'message' => 'Check-out berhasil.',
                     'sukses' => 1,
                     'data' => $data
-                ];
-
-                return response()->json($response, Response::HTTP_CREATED);
+                ], Response::HTTP_CREATED);
             }
         } else {
-            // Jika belum check-in sama sekali
-            $response = [
+            return response()->json([
                 'message' => 'Anda belum melakukan check-in hari ini.',
                 'sukses' => 0,
                 'data' => null
-            ];
-
-            return response()->json($response, Response::HTTP_CREATED);
+            ], Response::HTTP_CREATED);
         }
     }
+    
     public function attendenceApi(Request $request)
     {
-        $data = Report::where('id_user', $request->input('id_user'))->get();
+        $data = Report::where('id_user', $request->input('id_user'))
+        ->with('user')
+        ->get();
         $response = [
             'message' => 'success',
             'sukses' => 1,
@@ -290,4 +279,68 @@ class AttendenceController extends Controller
         $name = 'attendence' . date('Ymd') . '.xlsx';
         return (new ReportExport($request->grup_id, $request->starts_at, $request->ends_at))->download($name);
     }
+    public function overtime(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'id_user' => 'required',
+        'id_tl' => 'required',
+        'overtime_reason' => 'required|string',
+        'overtime' => 'required|numeric|max:24',
+        'latitude_lembur' => 'required|numeric',
+        'longitude_lembur' => 'required|numeric',
+        'address_lembur' => 'required|string',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    $cekabsen = Report::where('id_user', $request->id_user)
+        ->where('date', date('Y-m-d'))
+        ->first();
+
+    if (!$cekabsen) {
+        return response()->json([
+            'message' => 'Anda belum melakukan check-in hari ini.',
+            'sukses' => 0,
+            'data' => null
+        ], Response::HTTP_CREATED);
+    }
+
+    if ($cekabsen->overtime) {
+        return response()->json([
+            'message' => 'Anda sudah absen lembur.',
+            'sukses' => 0,
+            'data' => null
+        ], Response::HTTP_CREATED);
+    }
+
+    if (is_null($cekabsen->check_in) || is_null($cekabsen->check_out)) {
+        return response()->json([
+            'message' => 'Anda harus check-in dan check-out terlebih dahulu.',
+            'sukses' => 0,
+            'data' => null
+        ], Response::HTTP_CREATED);
+    }
+
+    // Simpan data lembur
+    $data = [
+        'overtime_reason'   => $request->overtime_reason,
+        'id_tl'             => $request->id_tl,
+        'overtime'          => (float) $request->overtime,
+        'latitude_lembur'   => $request->latitude_lembur,
+        'longitude_lembur'  => $request->longitude_lembur,
+        'address_lembur'    => $request->address_lembur,
+    ];
+
+    $cekabsen->update($data);
+
+    return response()->json([
+        'message' => 'Data lembur berhasil disimpan.',
+        'sukses' => 1,
+        'data' => $data
+    ], Response::HTTP_CREATED);
+}
+
+    
 }

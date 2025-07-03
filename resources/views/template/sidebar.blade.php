@@ -48,7 +48,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#report-page" aria-expanded="false"
                     aria-controls="report-page">
-                    <span class="menu-title">Lali wes</span>
+                    <span class="menu-title">Report</span>
                     <i class="menu-arrow"></i>
                     <i class="mdi mdi-clipboard-check menu-icon"></i>
                 </a>
@@ -61,7 +61,7 @@
         @endif
 
         @if (auth()->user()->role == '0')
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#report-page" aria-expanded="false"
                     aria-controls="report-page">
                     <span class="menu-title">Product</span>
@@ -73,7 +73,7 @@
                         <li class="nav-item"> <a class="nav-link" href="/product">Product</a></li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link" href="/notifikasi">

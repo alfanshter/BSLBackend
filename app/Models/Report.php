@@ -19,6 +19,19 @@ class Report extends Model
         'picture_out',
         'address_in',
         'address_out',
+        'address_lembur',
+        'overtime_reason',
+        'overtime',
+        'latitude_in',
+        'longitude_in',
+        'latitude_out',
+        'longitude_out',
+        'latitude_lembur',
+        'longitude_lembur',
+        'address_in',
+        'address_out',
+        'address_lembur',
+        'id_tl'
     ];
 
     public function grup()
