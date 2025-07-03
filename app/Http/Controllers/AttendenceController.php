@@ -93,7 +93,7 @@ class AttendenceController extends Controller
         $validator = Validator::make($request->all(), [
             'id_user' => 'required',
             'address_in' => 'required',
-            'picture_in' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+            'picture_in' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'latitude_in' => 'nullable|numeric',
             'longitude_in' => 'nullable|numeric',
         ]);
