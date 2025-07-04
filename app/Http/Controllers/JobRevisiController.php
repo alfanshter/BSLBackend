@@ -147,12 +147,14 @@ class JobRevisiController extends Controller
                 'updated_at' => now(),
             ]);
 
+
             return response()->json([
                 'message' => 'File uploaded successfully.',
-                'data' => $jsarev,
                 'status' => 1,
-                'file_url' => asset('storage/docs/' . $newFileName), // URL publik ke file
+                'file_url' => asset('storage/docs/' . $newFileName),
+                'data' => $jsarev
             ]);
+            
         }
 
         return response()->json(['message' => 'You are not allowed to access.'], 201);

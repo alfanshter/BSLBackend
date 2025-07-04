@@ -642,9 +642,7 @@
                         $("#modalGroup").modal('hide');
 
                         // Tampilkan loader setelah modal ditutup
-                        setTimeout(function() {
-                            $('#render-loader').show();
-                        }, 300); // Delay kecil untuk memastikan modal sudah tertutup
+                        $('#render-loader').show();
                     },
                     success: (response) => {
                         // Sembunyikan loader setelah request selesai
@@ -700,7 +698,7 @@
                             $("#error-modal").removeClass("active");
                         }, 2000); // Pop-up akan hilang setelah 2 detik
 
-                        console.error(data); // Cetak error untuk debugging
+                        console.error("cek error" + response); // Cetak error untuk debugging
                     }
                 });
             });

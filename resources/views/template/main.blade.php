@@ -32,7 +32,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('manifest.json') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png')}}">
+    <meta name="msapplication-TileImage" content="{{ asset('ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -70,7 +70,7 @@
                 <footer class="footer">
                     <div class="container-fluid d-flex justify-content-between">
                         <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright ©
-                            bootstrapdash.com 2021</span>
+                            ptpws.id 2021</span>
                     </div>
                 </footer>
                 <!-- partial -->
@@ -85,7 +85,7 @@
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="{{ asset('vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.cookie.js" type="text/javascript') }}"></script>
+    <script src="{{ asset('js/jquery.cookie.js') }}" type="text/javascript"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="{{ asset('js/off-canvas.js') }}"></script>
@@ -97,14 +97,21 @@
     <script src="{{ asset('js/todolist.js') }}"></script>
     <!-- End custom js for this page -->
     <script src="{{ asset('vendors/js/bootstrap.min.js') }}"></script>
+
+    <!-- HARUS load moment.js dulu -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
-    {{-- <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
+   
+    <script type="text/javascript" src="{{ asset('js/datatables.min.js') }}"></script>
 
   <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> --}}
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
         crossorigin="anonymous"></script>
+        
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
