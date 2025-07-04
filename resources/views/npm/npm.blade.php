@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div class="page-header">
-        <h3 class="page-title"> Npm </h3>
+        <h3 class="page-title"> NPM </h3>
         <a href="javascript:void(0)" class="btn btn-gradient-primary btn-icon-text btn-md" onClick="add()">
             <i class="mdi mdi-plus-box btn-icon-prepend"></i> Add </a>
     </div>
@@ -642,9 +642,7 @@
                         $("#modalGroup").modal('hide');
 
                         // Tampilkan loader setelah modal ditutup
-                        setTimeout(function() {
-                            $('#render-loader').show();
-                        }, 300); // Delay kecil untuk memastikan modal sudah tertutup
+                        $('#render-loader').show();
                     },
                     success: (response) => {
                         // Sembunyikan loader setelah request selesai

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class NpmController extends Controller
@@ -25,7 +26,7 @@ class NpmController extends Controller
                         return view('npm.action', compact('npm'))->render();
                     })
                     ->addColumn('file', function ($npm) {
-                        return basename($npm->file); // Ambil hanya nama file
+                        return basename($npm->nama_file); // Ambil hanya nama file
                     })
                     ->addColumn('tanggal', function ($npm) {
                         return $npm->tanggal;
@@ -101,92 +102,99 @@ class NpmController extends Controller
         // Validasi input
         $validatedData = $request->validate([
             'file' => 'required|file|mimes:docx,xls,xlsx,pdf,doc|max:51200',
-            'tanggal' => 'required|date', // Validasi tanggal
+            'tanggal' => 'required|date',
         ]);
 
-        $data = $request->all();
-        Log::info("tester", $data);
-
-        if (Auth::check()) {
-            // Proses file
-            $newFileName = null;
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
-
-                // Ambil nama file asli tanpa ekstensi
-                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-
-                // Tambahkan timestamp ke nama file
-                $timestamp = now()->format('Ymd_His');
-
-                // Gabungkan nama file dengan timestamp dan ekstensi
-                $newFileName = "{$originalName}({$timestamp}).{$file->getClientOriginalExtension()}";
-
-                // Simpan file ke direktori storage/app/public/prettyCast
-                $file->storeAs('public/npm', $newFileName);
-            }
-
-            // Simpan data ke database
-            $npm = NpmModel::create([
-                'file' => $newFileName,
-                'user_id' => Auth::id(),
-                'tanggal' => $request->tanggal, // Simpan tanggal (YYYY-MM-DD)
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-
-            return response()->json([
-                'message' => 'File uploaded successfully.',
-                'data' => $npm,
-                'status' => 1,
-                'file_url' => asset('storage/npm/' . $newFileName), // URL publik ke file
-            ]);
+        if (!Auth::check()) {
+            return response()->json(['message' => 'You are not allowed to access.'], 403);
         }
 
-        return response()->json(['message' => 'You are not allowed to access.'], 201);
-    }
-    public function edit(Request $request)
-    {
-        // Validasi data
-        $request->validate([
-            'id' => 'required|exists:npm_models,id', // Pastikan ID ada di database
-            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:2048', // Validasi file baru
+        $newFileName = null;
+        $originalFileName = null;
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            // Simpan nama asli file (termasuk ekstensi)
+            $originalFileName = $file->getClientOriginalName();
+
+            // Buat nama baru berdasarkan timestamp saja
+            $timestamp = now()->format('Ymd_His');
+            $extension = $file->getClientOriginalExtension();
+            $newFileName = "{$timestamp}.{$extension}";
+
+            // Simpan file ke storage/app/public/npm
+            $file->storeAs('public/npm', $newFileName);
+        }
+
+        // Simpan ke database
+        $npm = NpmModel::create([
+            'file' => $newFileName,
+            'nama_file' => $originalFileName,
+            'user_id' => Auth::id(),
+            'tanggal' => $request->tanggal,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        // Temukan data berdasarkan ID
+        return response()->json([
+            'message' => 'File uploaded successfully.',
+            'data' => $npm,
+            'status' => 1,
+            'file_url' => asset('storage/npm/' . $newFileName),
+        ]);
+    }
+
+    public function edit(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'id' => 'required|exists:npm_models,id',
+            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:51200',
+        ]);
+
+        // Ambil data berdasarkan ID
         $data = NpmModel::findOrFail($request->id);
 
         // Hapus file lama jika ada
-        $oldFilePath = storage_path('app/public/npm/' . $data->file);
-        if (file_exists($oldFilePath)) {
-            unlink($oldFilePath); // Hapus file lama dari storage
+        if ($data->file && Storage::disk('public')->exists('npm/' . $data->file)) {
+            Storage::disk('public')->delete('npm/' . $data->file);
         }
 
         // Simpan file baru
-        $filename = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
-        $extension = $request->file('file')->getClientOriginalExtension();
-        $newFileName = $filename . '(' . now()->format('dmY-H_i') . ').' . $extension;
+        $file = $request->file('file');
+        $timestamp = now()->format('Ymd_His');
+        $extension = $file->getClientOriginalExtension();
+        $newFileName = "{$timestamp}.{$extension}";
+        $originalName = $file->getClientOriginalName();
 
-        // Simpan file ke storage
-        $request->file('file')->storeAs('public/npm', $newFileName);
+        // Simpan ke folder storage/app/public/npm
+        $file->storeAs('public/npm', $newFileName);
 
-        // Update nama file di database
+        // Update data di database
         $data->file = $newFileName;
+        $data->nama_file = $originalName;
+        $data->updated_at = now();
         $data->save();
 
-        return response()->json(['message' => 'File berhasil diperbarui', 'status' => 1], 200);
+        return response()->json([
+            'message' => 'File berhasil diperbarui',
+            'status' => 1,
+            'data' => $data,
+            'file_url' => asset('storage/npm/' . $newFileName),
+        ], 200);
     }
-
     public function delete($id)
     {
         $npm = NpmModel::find($id);
+
         if (!$npm) {
             return response()->json(['message' => 'Data not found.'], 404);
         }
 
-        // Hapus file dari direktori storage/app/prettyCast
-        if ($npm->file && file_exists(storage_path('app/publc/npm/' . $npm->file))) {
-            unlink(storage_path('app/public/npm/' . $npm->file)); // Hapus file
+        // Hapus file dari storage (disk 'public')
+        if ($npm->file && Storage::disk('public')->exists('npm/' . $npm->file)) {
+            Storage::disk('public')->delete('npm/' . $npm->file);
         }
 
         // Hapus data dari database

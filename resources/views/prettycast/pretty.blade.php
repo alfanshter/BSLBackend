@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="page-header">
-    <h3 class="page-title"> Npm </h3>
+    <h3 class="page-title"> pretty </h3>
     <a href="javascript:void(0)" class="btn btn-gradient-primary btn-icon-text btn-md" onClick="add()">
         <i class="mdi mdi-plus-box btn-icon-prepend"></i> Add </a>
 </div>
@@ -222,7 +222,7 @@
                 processing: true,
                 serverSide: false,
                 ajax: {
-                    url: '/npm-view', // Endpoint untuk mengambil data awal
+                    url: '/pretty-cast', // Endpoint untuk mengambil data awal
                     type: 'GET',
                     dataSrc: function(json) {
                         return json.data
@@ -262,7 +262,7 @@
 
                 // Kirim permintaan AJAX untuk filter
                 $.ajax({
-                    url: '/npm-time', // Endpoint untuk filter
+                    url: '/pretty-time', // Endpoint untuk filter
                     type: 'GET',
                     data: {
                         start_time: startTime,
@@ -305,7 +305,7 @@
 
             // Kirim request AJAX ke server
             $.ajax({
-                url: '/npm-time', // Sesuaikan dengan endpoint Anda
+                url: '/pretty-time', // Sesuaikan dengan endpoint Anda
                 method: 'GET', // Gunakan method GET atau POST, sesuaikan dengan controller
                 data: {
                     start_time: startTime,
@@ -405,7 +405,7 @@
 
         function applyFilter(startTime, endTime) {
             $.ajax({
-                url: '/npm-time',
+                url: '/pretty-time',
                 type: 'GET',
                 data: {
                     start_time: startTime,
@@ -480,7 +480,7 @@
 
             // Kirim data menggunakan $.ajax
             $.ajax({
-                url: '/npm-edit', // URL endpoint
+                url: '/pretty-edit', // URL endpoint
                 type: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // CSRF Token
@@ -563,7 +563,7 @@
 
             $.ajax({
                 type: "DELETE",
-                url: "{{ url('npm-delete') }}/" + deleteId, // Kirim ID sebagai bagian dari URL
+                url: "{{ url('pretty-delete') }}/" + deleteId, // Kirim ID sebagai bagian dari URL
                 dataType: 'json',
                 success: function(res) {
                     // Sembunyikan modal lain yang aktif
@@ -634,7 +634,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "/npm-post",
+                url: "/pretty-post",
                 data: formData,
                 cache: false,
                 contentType: false,

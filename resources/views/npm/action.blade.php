@@ -1,6 +1,10 @@
-<a class="btn btn-gradient-success btn-rounded btn-sm" href="storage/npm/{{ $npm->file }}">
+<a class="btn btn-gradient-success btn-rounded btn-sm" 
+   href="{{ asset('storage/npm/' . $npm->file) }}" 
+   target="_blank" 
+   rel="noopener">
     <i class="mdi mdi-printer"></i>
 </a>
+
 
 <a class="btn btn-gradient-info btn-rounded btn-sm" href="javascript:void(0)" id="editModal" data-id="{{ $npm->id }}"
     data-file="{{ basename($npm->file) }}" onClick="editFunc({{ $npm->id }})" data-toggle="tooltip"
