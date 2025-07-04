@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('file');
             $table->unsignedBigInteger('user_id');
+            $table->string('nama_file')->nullable();
             $table->date('tanggal')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
