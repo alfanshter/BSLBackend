@@ -1,6 +1,11 @@
-<a class="btn btn-gradient-success btn-rounded btn-sm" href="storage/docs/{{ $jsarev->file }}" >
+
+<a class="btn btn-gradient-success btn-rounded btn-sm" 
+   href="{{ asset('storage/docs/' . $jsarev->file) }}" 
+   target="_blank" 
+   rel="noopener">
     <i class="mdi mdi-printer"></i>
 </a>
+
 
 <a class="btn btn-gradient-info btn-rounded btn-sm" href="javascript:void(0)" id="editModal" data-id="{{ $jsarev->id }}"
     data-file="{{ basename($jsarev->file) }}" onClick="editFunc({{ $jsarev->id }})" data-toggle="tooltip"

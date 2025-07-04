@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('jsarevs', function (Blueprint $table) {
             $table->id();
             $table->string('file');
+            $table->string('nama_file')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->date('tanggal')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

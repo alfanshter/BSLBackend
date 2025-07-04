@@ -1,6 +1,10 @@
-<a class="btn btn-gradient-success btn-rounded btn-sm" href="storage/prettycast/{{ $prettyCast->file }}">
+<a class="btn btn-gradient-success btn-rounded btn-sm" 
+   href="{{ asset('storage/prettycast/' . $prettyCast->file) }}" 
+   target="_blank" 
+   rel="noopener">
     <i class="mdi mdi-printer"></i>
 </a>
+
 
 <a class="btn btn-gradient-info btn-rounded btn-sm" href="javascript:void(0)" id="editModal" data-id="{{ $prettyCast->id }}"
     data-file="{{ basename($prettyCast->file) }}" onClick="editFunc({{ $prettyCast->id }})" data-toggle="tooltip"
